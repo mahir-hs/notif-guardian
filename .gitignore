@@ -1,0 +1,17 @@
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.kotlin/
+
+# Device logs and personal data pulled for debugging
+diagnostics/
+
+# Release signing: never commit
+keystore.properties
+*.jks
+*.keystore
+
+# Built release APKs (attach them to GitHub Releases instead)
+dist/

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Only apps signed with the same key as Guardian may ask the helper to write -->
+    <permission
+        android:name="dev.notifguardian.permission.APPLY_EXEMPTIONS"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_helper"
+        android:label="Guardian Helper">
+
+        <activity
+            android:name=".ReviewActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.NoDisplay" />
+
+        <receiver
+            android:name=".ApplyReceiver"
+            android:exported="true"
+            android:permission="dev.notifguardian.permission.APPLY_EXEMPTIONS">
+            <intent-filter>
+                <action android:name="dev.notifguardian.helper.APPLY" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

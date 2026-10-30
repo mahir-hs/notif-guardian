@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notif Guardian: fix late notifications on Xiaomi, Redmi and POCO (HyperOS)</title>
+<meta name="description" content="WhatsApp, Telegram or Gmail notifications only arrive when you open the app on your Xiaomi, Redmi or POCO phone? Notif Guardian finds why and keeps HyperOS from freezing them. Free, open source, no root.">
+<link rel="canonical" href="https://mahir-hs.github.io/notif-guardian/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Notif Guardian: notifications on time on Xiaomi HyperOS">
+<meta property="og:description" content="HyperOS freezes Google Play services while your screen is off, so messages wait until you unlock. Notif Guardian stops that. Free, open source, no root.">
+<meta property="og:url" content="https://mahir-hs.github.io/notif-guardian/">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notif Guardian",
+  "operatingSystem": "Android (Xiaomi HyperOS)",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Keeps Xiaomi HyperOS from freezing Google Play services and messaging apps so WhatsApp, Telegram and Gmail notifications arrive in real time.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://mahir-hs.github.io/notif-guardian/",
+  "downloadUrl": "https://github.com/mahir-hs/notif-guardian/releases/latest",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Why do WhatsApp notifications only arrive when I open the app on my Xiaomi phone?",
+      "acceptedAnswer": { "@type": "Answer", "text": "HyperOS freezes Google Play services when the screen turns off. Almost every app's push notifications travel through it, so they wait until you unlock or open the app. Google Play services has no battery saver setting in HyperOS, so you can't exempt it in Settings. Notif Guardian keeps it exempt." } },
+    { "@type": "Question", "name": "Does Notif Guardian need root?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It needs a one-time install of its small helper app from a computer with adb. After that everything runs on the phone." } },
+    { "@type": "Question", "name": "Which phones does it work on?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is built for Xiaomi, Redmi and POCO phones on HyperOS, and tested on a Redmi Note 14 Pro+ with HyperOS 3. Older MIUI versions may work partly." } },
+    { "@type": "Question", "name": "Does it read my messages?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It only records when a notification was posted and by which app, never the text. It goes online only when you tap Check for updates, and only to GitHub." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --ink: #14213D;
+    --ink-soft: #1B2A44;
+    --paper: #EEF2F6;
+    --white: #FFFFFF;
+    --muted: #5B6B82;
+    --line: #D5DEE8;
+    --clear: #1F8A70;
+    --clear-bright: #3FBF9A;
+    --broken: #C0392B;
+    --on-ink: #F3F6FA;
+    --on-ink-muted: #A9B6C8;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "IBM Plex Sans", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--body); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--clear-bright); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+  .prose { max-width: 40rem; }
+
+  /* Hero */
+  .hero { background: var(--ink); color: var(--on-ink); padding: 1.5rem 0 4.5rem; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: .6rem; font: 700 1.05rem var(--display); text-decoration: none; }
+  .brand img { width: 2rem; height: 2rem; }
+  .bar a.gh { color: var(--on-ink-muted); text-decoration: none; font-weight: 500; }
+  .bar a.gh:hover { color: var(--on-ink); }
+  h1 {
+    font: 700 clamp(2.4rem, 6.2vw, 4.6rem)/1.02 var(--display);
+    letter-spacing: -0.03em; margin: 3.5rem 0 1.25rem; max-width: 15ch;
+  }
+  .lede { font-size: 1.2rem; color: var(--on-ink-muted); max-width: 36rem; margin: 0 0 2.25rem; }
+  .downloads { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.35rem; border-radius: 999px;
+    font: 600 1rem var(--body); text-decoration: none; border: 2px solid transparent;
+  }
+  .btn-primary { background: var(--on-ink); color: var(--ink); }
+  .btn-primary:hover { background: var(--white); }
+  .btn-ghost { border-color: #3A4A63; color: var(--on-ink); }
+  .btn-ghost:hover { border-color: var(--on-ink-muted); }
+  .meta { color: var(--on-ink-muted); font-size: .95rem; margin-top: 1rem; }
+
+  /* Delivery path: the page's one bold element */
+  .path-section { background: var(--ink-soft); color: var(--on-ink); padding: 4rem 0 4.5rem; }
+  .path-section h2 { color: var(--on-ink); }
+  .path-section p.intro { color: var(--on-ink-muted); }
+  .toggle { display: inline-flex; background: var(--ink); border-radius: 999px; padding: .3rem; margin: 1.5rem 0 2.5rem; }
+  .toggle button {
+    font: 600 .95rem var(--body); border: 0; background: none; color: var(--on-ink-muted);
+    padding: .6rem 1.1rem; border-radius: 999px; cursor: pointer;
+  }
+  .toggle button[aria-pressed="true"] { background: var(--on-ink); color: var(--ink); }
+  .path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+  .hop { position: relative; padding-top: 2.4rem; padding-right: 1rem; }
+  .hop::before {
+    content: ""; position: absolute; top: .55rem; left: 0; right: 6px; height: 14px; border-radius: 4px;
+    background: var(--clear-bright); transition: background .35s ease;
+  }
+  .hop strong { display: block; font: 700 1.05rem/1.25 var(--display); margin-bottom: .3rem; }
+  .hop span { color: var(--on-ink-muted); font-size: .95rem; }
+  .hop .state { display: block; margin-top: .6rem; font-weight: 600; font-size: .9rem; color: var(--clear-bright); }
+  [data-mode="hyperos"] .hop.gms::before,
+  [data-mode="hyperos"] .hop.after::before { background: var(--broken); }
+  [data-mode="hyperos"] .hop.gms .state,
+  [data-mode="hyperos"] .hop.after .state { color: #EF6B5B; }
+  .verdict { margin-top: 2.25rem; font: 500 1.25rem/1.4 var(--display); max-width: 40rem; }
+
+  /* Sections */
+  section.block { padding: 4.5rem 0 1rem; }
+  h2 { font: 700 clamp(1.7rem, 3.4vw, 2.4rem)/1.1 var(--display); letter-spacing: -0.02em; margin: 0 0 1rem; }
+  p.intro { color: var(--muted); font-size: 1.1rem; max-width: 40rem; margin-top: 0; }
+
+  .features { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; }
+  .features li { padding: 1.25rem 0; border-top: 1px solid var(--line); }
+  .features strong { display: block; font-weight: 600; margin-bottom: .2rem; }
+  .features span { color: var(--muted); }
+
+  ol.steps { counter-reset: step; list-style: none; padding: 0; margin: 2rem 0 0; max-width: 46rem; }
+  ol.steps > li { counter-increment: step; position: relative; padding: 0 0 2rem 3.5rem; }
+  ol.steps > li::before {
+    content: counter(step); position: absolute; left: 0; top: -.15rem; width: 2.3rem; height: 2.3rem;
+    border-radius: 50%; background: var(--ink); color: var(--on-ink); display: grid; place-items: center;
+    font: 700 1rem var(--display);
+  }
+  ol.steps h3 { font: 700 1.2rem var(--display); margin: 0 0 .4rem; }
+  ol.steps p, ol.steps ul { margin: .3rem 0; }
+  ol.steps ul { padding-left: 1.1rem; color: var(--muted); }
+  code, pre { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .9em; }
+  pre { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1rem; overflow-x: auto; }
+  p code, li code { background: var(--white); border: 1px solid var(--line); padding: .05rem .35rem; border-radius: 6px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 1.1rem 0; max-width: 46rem; }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: outside; }
+  .faq details p { color: var(--muted); margin: .7rem 0 0; }
+
+  footer { margin-top: 4.5rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+
+  @media (max-width: 760px) {
+    .path { grid-template-columns: 1fr; }
+    .hop { padding: 0 0 1.4rem 2.2rem; }
+    .hop::before { top: .25rem; bottom: .25rem; left: 0; right: auto; width: 12px; height: auto; }
+    .features { grid-template-columns: 1fr; }
+    h1 { margin-top: 2.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hop::before { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="bar" aria-label="Site">
+      <a class="brand" href="./"><img src="icon.svg" alt="">Notif Guardian</a>
+      <a class="gh" href="https://github.com/mahir-hs/notif-guardian">Source on GitHub</a>
+    </nav>
+    <h1>Messages on time, even with the screen off.</h1>
+    <p class="lede">
+      On Xiaomi, Redmi and POCO phones, WhatsApp, Telegram and Gmail notifications often show up
+      only when you unlock or open the app. Notif Guardian finds out why and keeps HyperOS from
+      holding them back.
+    </p>
+    <div class="downloads">
+      <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Download Notif Guardian</a>
+      <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Download Guardian Helper</a>
+    </div>
+    <p class="meta" id="release-meta">Free and open source. No root. Android APK for HyperOS.</p>
+  </div>
+</header>
+
+<section class="path-section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">Why your messages are late</h2>
+    <p class="intro">
+      Nearly every app's notifications reach your phone through one connection, kept open by
+      Google Play services. Follow a WhatsApp message on its way to you.
+    </p>
+    <div class="toggle" role="group" aria-label="Show the delivery path">
+      <button type="button" data-set="hyperos" aria-pressed="true">HyperOS, screen off</button>
+      <button type="button" data-set="guardian" aria-pressed="false">With Notif Guardian</button>
+    </div>
+    <ol class="path" id="path" data-mode="hyperos">
+      <li class="hop"><strong>Your friend sends a message</strong><span>WhatsApp's servers pass it to Google.</span><b class="state">Sent</b></li>
+      <li class="hop"><strong>Google's push service</strong><span>Sends it to your phone right away.</span><b class="state">Delivered</b></li>
+      <li class="hop gms"><strong>Google Play services</strong><span>Receives it on your phone and wakes the app.</span><b class="state" data-hyperos="Frozen by HyperOS" data-guardian="Awake">Frozen by HyperOS</b></li>
+      <li class="hop after"><strong>WhatsApp</strong><span>Fetches the message and shows it.</span><b class="state" data-hyperos="Never woken" data-guardian="Shows it">Never woken</b></li>
+      <li class="hop after"><strong>Your lock screen</strong><span>You see the notification.</span><b class="state" data-hyperos="Only when you unlock" data-guardian="Instantly">Only when you unlock</b></li>
+    </ol>
+    <p class="verdict" id="verdict"
+       data-hyperos="HyperOS freezes Google Play services whenever the screen turns off, and it has no battery setting you could change to stop it."
+       data-guardian="Notif Guardian keeps Google Play services on HyperOS's exemption list, and puts it back within milliseconds whenever HyperOS removes it.">
+      HyperOS freezes Google Play services whenever the screen turns off, and it has no battery setting you could change to stop it.
+    </p>
+  </div>
+</section>
+
+<main>
+  <section class="block" aria-labelledby="what">
+    <div class="wrap">
+      <h2 id="what">What it does</h2>
+      <p class="intro">Pick the apps whose notifications matter to you. Guardian watches them and fixes what HyperOS breaks.</p>
+      <ul class="features">
+        <li><strong>Keeps Google Play services awake</strong><span>The one fix HyperOS settings can't do, and the one every app depends on.</span></li>
+        <li><strong>Checks each app's delivery path</strong><span>Running, autostart, battery saver, background activity, frozen or not, at a glance.</span></li>
+        <li><strong>One tap to the right setting</strong><span>Opens the exact HyperOS screen for each problem instead of making you hunt for it.</span></li>
+        <li><strong>Tells you when an app gets killed</strong><span>And brings it back with a tap, so you don't miss anything.</span></li>
+        <li><strong>Measures late notifications</strong><span>Shows how late each one arrived, so you can see it working.</span></li>
+        <li><strong>Private by design</strong><span>Reads when a notification arrived, never what it says. Goes online only to check for updates.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="install">
+    <div class="wrap">
+      <h2 id="install">Install</h2>
+      <p class="intro">About ten minutes, once. You need a computer for step 2 only.</p>
+      <ol class="steps">
+        <li>
+          <h3>Install Notif Guardian</h3>
+          <p>Download <code>NotifGuardian</code> above, open it on your phone and allow installing from your browser or file manager. Open the app and turn every row in <b>Guardian is set up</b> green, then tap <b>Add apps</b>.</p>
+        </li>
+        <li>
+          <h3>Install Guardian Helper from a computer</h3>
+          <p>Android doesn't let the helper be installed from the phone itself. Turn on <b>USB debugging</b> and <b>Install via USB</b> in Developer options, connect the phone, and run:</p>
+          <pre>adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
+          <p>Tap <b>Install</b> on the phone when HyperOS asks.</p>
+        </li>
+        <li>
+          <h3>Finish in the app</h3>
+          <p>Open <b>Keep Google Play services awake</b> and turn every row green:</p>
+          <ul>
+            <li>Allow <b>Modify system settings</b> for the helper</li>
+            <li>Turn on the helper's <b>Autostart</b></li>
+            <li>Set the helper's <b>Battery saver</b> to <b>No restrictions</b></li>
+            <li>Tap <b>Open helper</b>, confirm Android's review, then <b>Test helper</b></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq">
+    <div class="wrap">
+      <h2 id="faq">Questions</h2>
+      <details>
+        <summary>Why do notifications only arrive when I open the app?</summary>
+        <p>HyperOS freezes Google Play services while the screen is off. Push notifications for almost every app travel through it, so they wait until you unlock. Setting an app's battery saver to "No restrictions" helps that app, but HyperOS offers no such setting for Google Play services. That's the gap Notif Guardian fills.</p>
+      </details>
+      <details>
+        <summary>Does it need root?</summary>
+        <p>No. The helper is installed once with adb from a computer; after that everything runs on the phone, including after reboots.</p>
+      </details>
+      <details>
+        <summary>Which phones does it work on?</summary>
+        <p>Xiaomi, Redmi and POCO phones on HyperOS. It's tested on a Redmi Note 14 Pro+ with HyperOS 3. Older MIUI versions may work partly. If something doesn't, tap <b>Share diagnostics</b> in the app and open an issue on GitHub.</p>
+      </details>
+      <details>
+        <summary>Does it drain the battery?</summary>
+        <p>Barely. Guardian checks your apps once a minute and reacts when HyperOS changes its list. Keeping Google Play services awake is what every non-Xiaomi Android phone does anyway.</p>
+      </details>
+      <details>
+        <summary>Telegram is still a little late sometimes. Why?</summary>
+        <p>If you're active on Telegram Desktop or Web, Telegram's servers hold back the push to your phone on purpose. The phone delivers it the moment it arrives.</p>
+      </details>
+      <details>
+        <summary>Does it read my messages?</summary>
+        <p>No. It records which app posted a notification and when, never the text. Nothing leaves your phone unless you share a diagnostics file yourself.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Notif Guardian is free software under the MIT license.</span>
+    <span><a href="https://github.com/mahir-hs/notif-guardian">Source</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">Report a problem</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">All releases</a></span>
+  </div>
+</footer>
+
+<script>
+  // Delivery path toggle
+  const path = document.getElementById('path');
+  const verdict = document.getElementById('verdict');
+  document.querySelectorAll('.toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.dataset.set;
+      path.dataset.mode = mode;
+      document.querySelectorAll('.toggle button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      path.querySelectorAll('.state[data-' + mode + ']').forEach(s => { s.textContent = s.dataset[mode]; });
+      verdict.textContent = verdict.dataset[mode];
+    });
+  });
+
+  // Point the download buttons straight at the latest release's APKs
+  fetch('https://api.github.com/repos/mahir-hs/notif-guardian/releases/latest')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(release => {
+      const find = prefix => release.assets.find(a => a.name.startsWith(prefix) && a.name.endsWith('.apk'));
+      const guardian = find('NotifGuardian-');
+      const helper = find('GuardianHelper-');
+      if (guardian) document.getElementById('dl-guardian').href = guardian.browser_download_url;
+      if (helper) document.getElementById('dl-helper').href = helper.browser_download_url;
+      const date = new Date(release.published_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('release-meta').textContent =
+        'Version ' + release.tag_name.replace(/^v/, '') + ', released ' + date + '. Free and open source. No root.';
+    })
+    .catch(() => { /* buttons keep pointing at the releases page */ });
+</script>
+</body>
+</html>

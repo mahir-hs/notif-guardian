@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Guardian's bell on a slate tile; plain vector because the helper also supports pre-26 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#3A4A63"
+        android:pathData="M30,6h48a24,24 0,0 1,24 24v48a24,24 0,0 1,-24 24H30A24,24 0,0 1,6 78V30A24,24 0,0 1,30 6z" />
+    <path
+        android:fillColor="#F3F6FA"
+        android:pathData="M54,27c-1.66,0 -3,1.34 -3,3v1.2C44.2,32.6 39,38.6 39,46v10l-4,4v2h38v-2l-4,-4V46c0,-7.4 -5.2,-13.4 -12,-14.8V30c0,-1.66 -1.34,-3 -3,-3z M49,64.5a5,5 0,0 0,10 0z" />
+    <path
+        android:fillColor="#E0A84A"
+        android:pathData="M35,74h6v4h-6z M43,74h6v4h-6z M51,74h6v4h-6z M59,74h6v4h-6z M67,74h6v4h-6z" />
+</vector>
