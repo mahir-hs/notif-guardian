@@ -77,16 +77,17 @@ Then tap **Add apps** and choose the apps whose notifications matter to you.
 
 ### 2. Guardian Helper (needed for Google Play services)
 
-Android 14+ blocks installing apps built for old Android versions, so the helper has to be
-installed once from a computer with [adb](https://developer.android.com/tools/releases/platform-tools):
-
-1. On the phone: **Settings → About phone**, tap **OS version** 7 times. In **Developer options**
-   turn on **USB debugging** and **Install via USB** (Xiaomi requires a Mi account for this).
-2. Connect the phone and run:
+1. Download `GuardianHelper-x.y.z.apk` on the phone and install it like Guardian. It has no icon.
+   HyperOS's installer accepts it (tested on HyperOS 3), even though stock Android 14+ refuses apps
+   built for old Android versions.
+2. **Only if your phone refuses to install it:** install it once from a computer with
+   [adb](https://developer.android.com/tools/releases/platform-tools). On the phone,
+   **Settings → About phone**, tap **OS version** 7 times; in **Developer options** turn on
+   **USB debugging** and **Install via USB** (Xiaomi requires a Mi account for this). Then run
    ```
    adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk
    ```
-   Watch the phone and tap **Install** on HyperOS's confirmation screen.
+   and tap **Install** on the phone's confirmation screen.
 3. In Notif Guardian, open **Keep Google Play services awake** and turn every row green:
    - **Helper can change system settings**: turn on **Modify system settings**.
    - **Helper autostart**: turn it on.
@@ -145,8 +146,9 @@ The in-app updater reads the latest release of the repo set in `gradle.propertie
    `SHA256SUMS.txt`. The updater looks for an asset named `NotifGuardian-*.apk` and checks it
    against `SHA256SUMS.txt`. The release notes are shown in the app.
 
-The updater only updates Guardian. Guardian Helper rarely changes; when it does, reinstall it with
-adb as above (and turn its autostart back on).
+The updater only updates Guardian: Android doesn't let an app install the helper, because it
+targets an old Android version. Guardian Helper rarely changes; when it does, users reinstall it
+from the release like the first time (and turn its autostart back on).
 
 ## Support development
 

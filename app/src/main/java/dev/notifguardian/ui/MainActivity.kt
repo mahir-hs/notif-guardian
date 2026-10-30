@@ -60,6 +60,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
+import dev.notifguardian.BuildConfig
 import dev.notifguardian.ProtectedApps
 import dev.notifguardian.TargetApp
 import dev.notifguardian.diag.Diagnostics
@@ -360,12 +361,16 @@ private fun HelperSection(refresh: Int, onChanged: () -> Unit) {
         )
         if (!expanded) return@Column
         Group(Modifier.padding(top = 12.dp)) {
+            val website = BuildConfig.UPDATE_REPO.takeIf { it.contains('/') }?.let {
+                val (owner, name) = it.split('/', limit = 2)
+                "https://$owner.github.io/$name/#install"
+            }
             SetupRow(
                 "Guardian Helper installed",
-                "Install it once from a computer: adb install --bypass-low-target-sdk-block helper-debug.apk",
+                "Download Guardian Helper and install it like this app. It has no icon; it works in the background.",
                 status.installed,
-                null,
-            ) {}
+                if (website != null) "Download" else null,
+            ) { website?.let { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it))) } }
             if (status.installed) {
                 Divider()
                 SetupRow(

@@ -38,7 +38,7 @@
     { "@type": "Question", "name": "Why do WhatsApp notifications only arrive when I open the app on my Xiaomi phone?",
       "acceptedAnswer": { "@type": "Answer", "text": "HyperOS freezes Google Play services when the screen turns off. Almost every app's push notifications travel through it, so they wait until you unlock or open the app. Google Play services has no battery saver setting in HyperOS, so you can't exempt it in Settings. Notif Guardian keeps it exempt." } },
     { "@type": "Question", "name": "Does Notif Guardian need root?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. It needs a one-time install of its small helper app from a computer with adb. After that everything runs on the phone." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "No root and no computer: Notif Guardian and its small helper app both install on the phone. Only if a phone refuses to install the helper is a one-time install with adb from a computer needed." } },
     { "@type": "Question", "name": "Which phones does it work on?",
       "acceptedAnswer": { "@type": "Answer", "text": "It is built for Xiaomi, Redmi and POCO phones on HyperOS, and tested on a Redmi Note 14 Pro+ with HyperOS 3. Older MIUI versions may work partly." } },
     { "@type": "Question", "name": "Does it read my messages?",
@@ -197,7 +197,7 @@
       <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Download Notif Guardian</a>
       <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Download Guardian Helper</a>
     </div>
-    <p class="meta" id="release-meta">Free and open source. No root. Android APK for HyperOS.</p>
+    <p class="meta" id="release-meta">Free and open source. No root, no computer. Android APK for HyperOS.</p>
   </div>
 </header>
 
@@ -246,7 +246,7 @@
   <section class="block" aria-labelledby="install">
     <div class="wrap">
       <h2 id="install">Install</h2>
-      <p class="intro">About ten minutes, once. You need a computer for step 2 only.</p>
+      <p class="intro">About ten minutes, once, all on your phone. No computer needed.</p>
       <ol class="steps">
         <li>
           <h3>Install Notif Guardian</h3>
@@ -254,10 +254,10 @@
           <p>If Android blocks <b>Notification access</b> because the app "comes from an unknown source": open the app's <b>App info</b>, tap <b>&#8942;</b> at the top right, choose <b>Allow restricted settings</b>, then try again. Android asks this once for any app installed from a downloaded file.</p>
         </li>
         <li>
-          <h3>Install Guardian Helper from a computer</h3>
-          <p>Android doesn't let the helper be installed from the phone itself. Turn on <b>USB debugging</b> and <b>Install via USB</b> in Developer options, connect the phone, and run:</p>
+          <h3>Install Guardian Helper</h3>
+          <p>Download <code>GuardianHelper</code> above and install it the same way. It has no icon: it works in the background for Notif Guardian. HyperOS may warn that it's built for an older version of Android; that's expected, because it's the only way the helper can do its job.</p>
+          <p>If your phone refuses to install it at all, install it from a computer instead: turn on <b>USB debugging</b> and <b>Install via USB</b> in Developer options, connect the phone, and run</p>
           <pre>adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
-          <p>Tap <b>Install</b> on the phone when HyperOS asks.</p>
         </li>
         <li>
           <h3>Finish in the app</h3>
@@ -291,7 +291,7 @@
       </details>
       <details>
         <summary>Does it need root?</summary>
-        <p>No. The helper is installed once with adb from a computer; after that everything runs on the phone, including after reboots.</p>
+        <p>No, and no computer either: both apps install on the phone, and everything keeps working after reboots. Only if your phone refuses to install the helper do you need a computer, once.</p>
       </details>
       <details>
         <summary>Which phones does it work on?</summary>
@@ -402,7 +402,7 @@
       if (helper) document.getElementById('dl-helper').href = helper.browser_download_url;
       const date = new Date(release.published_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
       document.getElementById('release-meta').textContent =
-        'Version ' + release.tag_name.replace(/^v/, '') + ', released ' + date + '. Free and open source. No root.';
+        'Version ' + release.tag_name.replace(/^v/, '') + ', released ' + date + '. Free and open source. No root, no computer.';
     })
     .catch(() => { /* buttons keep pointing at the releases page */ });
 </script>

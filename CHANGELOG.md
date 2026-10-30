@@ -3,6 +3,14 @@
 All notable changes to Notif Guardian. Each version's section is also its GitHub release notes,
 which the in-app updater shows before you install.
 
+## 0.1.3 (2026-10-30)
+
+- No computer needed: Guardian Helper installs on the phone like any download (tested on
+  HyperOS 3). The setup row now has a **Download** button instead of adb instructions; adb is
+  only a fallback if your phone refuses the helper.
+
+Guardian Helper is unchanged. If you already have it, you don't need to reinstall it.
+
 ## 0.1.2 (2026-10-30)
 
 - New **Support development** section: if Notif Guardian fixed your notifications, you can now
