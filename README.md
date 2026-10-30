@@ -2,7 +2,7 @@
 
 Real-time notifications on Xiaomi HyperOS, without opening the app first.
 
-**Website and download: https://mahir-hs.github.io/notif-guardian/**
+**Website and download: https://mahir-hs.github.io/notif-guardian/** · [Changelog](CHANGELOG.md)
 
 On Xiaomi phones, WhatsApp, Telegram, Gmail and other messages often arrive only when you unlock
 the phone or open the app. Notif Guardian finds out why, fixes what it can, and tells you when
@@ -137,6 +137,7 @@ The in-app updater reads the latest release of the repo set in `gradle.propertie
 (`updateRepo=owner/name`). For each release:
 
 1. In `app/build.gradle.kts`, raise `versionCode` by one and set `versionName` (e.g. `0.2.0`).
+   Add the version's section to `CHANGELOG.md`; it doubles as the release notes.
 2. Run `scripts/build-release.ps1`.
 3. Create a GitHub release with the tag `v` + versionName (e.g. `v0.2.0`) and attach **all three**
    files from `dist/`: `NotifGuardian-<version>.apk`, `GuardianHelper-<version>.apk` and
