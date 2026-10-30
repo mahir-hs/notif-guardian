@@ -1,15 +1,24 @@
 {
   "message": "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.",
+  "regions": {
+    "BD": {
+      "name": "Bangladesh",
+      "about": "bKash and Nagad are mobile wallets used in Bangladesh."
+    }
+  },
   "methods": [
     {
       "name": "bKash",
+      "region": "BD",
       "value": "01972697374",
       "note": "Personal account: use Send Money"
     },
     {
       "name": "Nagad",
+      "region": "BD",
       "value": "01972697374",
       "note": "Personal account: use Send Money"
     }
-  ]
+  ],
+  "elsewhere": "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it."
 }

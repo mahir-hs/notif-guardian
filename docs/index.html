@@ -146,7 +146,13 @@
   .faq summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: outside; }
   .faq details p { color: var(--muted); margin: .7rem 0 0; }
 
-  .donate { list-style: none; padding: 0; margin: 1.5rem 0 0; max-width: 34rem; background: var(--white); border-radius: 20px; }
+  .region { margin-top: 1.75rem; max-width: 34rem; }
+  .region-head { display: flex; align-items: center; gap: .75rem; }
+  .region-head img { width: 2.1rem; height: auto; border-radius: 3px; box-shadow: 0 0 0 1px var(--line); }
+  .region-head strong { font: 700 1.15rem var(--display); }
+  .region-about { color: var(--muted); margin: .35rem 0 0; }
+  .elsewhere { color: var(--muted); max-width: 34rem; margin-top: 1.5rem; }
+  .donate { list-style: none; padding: 0; margin: .9rem 0 0; background: var(--white); border-radius: 20px; }
   .donate li { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
   .donate li:first-child { border-top: 0; }
   .donate .what { flex: 1; }
@@ -270,8 +276,8 @@
     <div class="wrap">
       <h2 id="support-title">Support development</h2>
       <p class="intro" id="support-message">Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.</p>
-      <ul class="donate" id="donate-list" hidden></ul>
-      <p id="donate-fallback">Starring the project on <a href="https://github.com/mahir-hs/notif-guardian">GitHub</a> helps more people find it.</p>
+      <div id="donate-groups"></div>
+      <p id="donate-elsewhere" class="elsewhere">Starring the project on <a href="https://github.com/mahir-hs/notif-guardian">GitHub</a> helps more people find it.</p>
     </div>
   </section>
 
@@ -332,8 +338,34 @@
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(info => {
       if (info.message) document.getElementById('support-message').textContent = info.message;
-      const list = document.getElementById('donate-list');
+      if (info.elsewhere) document.getElementById('donate-elsewhere').textContent = info.elsewhere;
+      const groups = document.getElementById('donate-groups');
+      const regions = info.regions || {};
+      const lists = {};
+      const listFor = code => {
+        if (lists[code]) return lists[code];
+        const region = document.createElement('div');
+        region.className = 'region';
+        const r = regions[code];
+        if (r) {
+          const head = document.createElement('div');
+          head.className = 'region-head';
+          const flag = document.createElement('img');
+          flag.src = 'flags/' + code + '.svg'; flag.alt = '';
+          const name = document.createElement('strong');
+          name.textContent = 'In ' + r.name;
+          head.append(flag, name);
+          region.appendChild(head);
+          if (r.about) { const a = document.createElement('p'); a.className = 'region-about'; a.textContent = r.about; region.appendChild(a); }
+        }
+        const ul = document.createElement('ul');
+        ul.className = 'donate';
+        region.appendChild(ul);
+        groups.appendChild(region);
+        return (lists[code] = ul);
+      };
       (info.methods || []).forEach(m => {
+        const list = listFor(m.region || '');
         const li = document.createElement('li');
         const what = document.createElement('div');
         what.className = 'what';
@@ -355,7 +387,6 @@
         }
         list.appendChild(li);
       });
-      if (list.children.length) list.hidden = false;
     })
     .catch(() => {});
 

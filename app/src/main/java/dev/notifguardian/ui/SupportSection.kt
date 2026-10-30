@@ -82,12 +82,32 @@ fun SupportSection() {
                 "Donation options are coming soon. Starring the project on GitHub helps too.",
                 style = MaterialTheme.typography.bodyMedium,
             )
-            else -> Column(
-                Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(p.surface),
-            ) {
-                loaded.methods.forEachIndexed { i, m ->
-                    if (i > 0) HorizontalDivider(color = p.line, modifier = Modifier.padding(start = 16.dp))
-                    MethodRow(m)
+            else -> {
+                // One group per country, in the order the methods are listed
+                loaded.methods.groupBy { it.region }.forEach { (code, methods) ->
+                    val region = code?.let { loaded.regions[it] }
+                    if (region != null) {
+                        Text(
+                            "${region.flag}  In ${region.name}",
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.padding(top = 4.dp),
+                        )
+                        region.about?.let {
+                            Text(it, style = MaterialTheme.typography.bodySmall, color = p.inkMuted)
+                        }
+                    }
+                    Column(
+                        Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 12.dp)
+                            .clip(RoundedCornerShape(20.dp)).background(p.surface),
+                    ) {
+                        methods.forEachIndexed { i, m ->
+                            if (i > 0) HorizontalDivider(color = p.line, modifier = Modifier.padding(start = 16.dp))
+                            MethodRow(m)
+                        }
+                    }
+                }
+                loaded.elsewhere?.let {
+                    Text(it, style = MaterialTheme.typography.bodySmall, color = p.inkMuted)
                 }
             }
         }
