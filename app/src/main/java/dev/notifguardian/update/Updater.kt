@@ -155,7 +155,9 @@ object Updater {
         apk ?: throw IOException("release $version has no $APK_PREFIX*.apk")
         val apkName = apk.getString("name")
         val sha = sumsUrl?.let { url ->
-            get(url).lines().firstOrNull { it.trim().endsWith(apkName) }?.trim()?.substringBefore(' ')
+            // Strip a UTF-8 BOM: Windows tools like to add one
+            get(url).removePrefix("﻿").lines()
+                .firstOrNull { it.trim().endsWith(apkName) }?.trim()?.substringBefore(' ')
         }
         return Release(
             version = version,
