@@ -3,6 +3,16 @@
 All notable changes to Notif Guardian. Each version's section is also its GitHub release notes,
 which the in-app updater shows before you install.
 
+## 0.1.4 (2026-10-30)
+
+- Install Guardian Helper from inside Guardian: the **Install** button on its setup row downloads
+  it, with progress, and opens the install screen.
+- **Check for updates** now also offers a newer Guardian Helper when there is one.
+- Release files now name Guardian Helper with its own version, so the app only offers it when it
+  really changed.
+
+Guardian Helper is unchanged. If you already have it, you don't need to reinstall it.
+
 ## 0.1.3 (2026-10-30)
 
 - No computer needed: Guardian Helper installs on the phone like any download (tested on

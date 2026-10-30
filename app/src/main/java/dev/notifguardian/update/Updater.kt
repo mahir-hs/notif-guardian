@@ -24,20 +24,31 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.security.MessageDigest
 
+/** A downloadable file attached to a release. */
+data class Asset(
+    val name: String,
+    val url: String,
+    val size: Long,
+    /** From the release's SHA256SUMS.txt; null if the release has none. */
+    val sha256: String?,
+)
+
 data class Release(
     val version: String,
     val notes: String,
     val apkUrl: String,
     val apkName: String,
     val apkSize: Long,
-    /** From the release's SHA256SUMS.txt; null if the release has none. */
     val sha256: String?,
+    /** Guardian Helper attached to the release; its file name carries the helper's own version. */
+    val helper: Asset? = null,
+    val helperVersion: String? = null,
 )
 
 sealed interface UpdateState {
     data object Idle : UpdateState
     data object Checking : UpdateState
-    data class UpToDate(val latest: String) : UpdateState
+    data class UpToDate(val latest: String, val release: Release) : UpdateState
     data class Available(val release: Release) : UpdateState
     /** Android needs "Install unknown apps" allowed for Guardian before it can install. */
     data class NeedsInstallPermission(val release: Release) : UpdateState
@@ -49,12 +60,14 @@ sealed interface UpdateState {
 }
 
 /**
- * Self-update from the GitHub repo's latest release. Only Guardian updates itself: Android won't let
- * an app install Guardian Helper (it targets an old SDK), and installing it resets its autostart.
- * Android also rejects any APK not signed with the same key, so only the real releases install.
+ * Self-update from the GitHub repo's latest release. Guardian installs itself through a
+ * PackageInstaller session; Guardian Helper (API 22) can't be installed that way, so
+ * [HelperInstaller] hands it to the system installer instead. Android rejects any APK not signed
+ * with the same key, so only the real releases install.
  */
 object Updater {
     private const val APK_PREFIX = "NotifGuardian-"
+    private const val HELPER_PREFIX = "GuardianHelper-"
     private const val SUMS_ASSET = "SHA256SUMS.txt"
 
     private val _state = MutableStateFlow<UpdateState>(UpdateState.Idle)
@@ -72,7 +85,7 @@ object Updater {
                 if (isNewer(release.version, BuildConfig.VERSION_NAME)) {
                     UpdateState.Available(release)
                 } else {
-                    UpdateState.UpToDate(release.version)
+                    UpdateState.UpToDate(release.version, release)
                 }
             } catch (e: Exception) {
                 DiagLog.w("Updater", "check failed", e)
@@ -91,12 +104,6 @@ object Updater {
         scope.launch(Dispatchers.IO) {
             try {
                 val apk = download(app, release)
-                _state.value = UpdateState.Verifying
-                val expected = release.sha256
-                if (expected != null && !sha256(apk).equals(expected, ignoreCase = true)) {
-                    apk.delete()
-                    throw IOException("the download is damaged (checksum doesn't match)")
-                }
                 install(app, apk)
             } catch (e: Exception) {
                 DiagLog.e("Updater", "update failed", e)
@@ -140,43 +147,57 @@ object Updater {
     @Volatile
     private var lastRelease: Release? = null
 
-    private fun fetchLatest(): Release {
+    /** Reads the repo's latest release. Blocking: call off the main thread. */
+    internal fun fetchLatest(): Release {
         val json = JSONObject(get("https://api.github.com/repos/$repo/releases/latest"))
         val version = json.getString("tag_name").removePrefix("v")
         val assets = json.getJSONArray("assets")
         var apk: JSONObject? = null
+        var helper: JSONObject? = null
         var sumsUrl: String? = null
         for (i in 0 until assets.length()) {
             val a = assets.getJSONObject(i)
             val name = a.getString("name")
             if (name.startsWith(APK_PREFIX) && name.endsWith(".apk")) apk = a
+            if (name.startsWith(HELPER_PREFIX) && name.endsWith(".apk")) helper = a
             if (name == SUMS_ASSET) sumsUrl = a.getString("browser_download_url")
         }
         apk ?: throw IOException("release $version has no $APK_PREFIX*.apk")
-        val apkName = apk.getString("name")
-        val sha = sumsUrl?.let { url ->
-            // Strip a UTF-8 BOM: Windows tools like to add one
-            get(url).removePrefix("﻿").lines()
-                .firstOrNull { it.trim().endsWith(apkName) }?.trim()?.substringBefore(' ')
+        // Strip a UTF-8 BOM: Windows tools like to add one
+        val sums = sumsUrl?.let { get(it).removePrefix("﻿").lines() }.orEmpty()
+        fun shaOf(name: String) = sums.firstOrNull { it.trim().endsWith(name) }?.trim()?.substringBefore(' ')
+        fun asset(a: JSONObject) = a.getString("name").let {
+            Asset(it, a.getString("browser_download_url"), a.getLong("size"), shaOf(it))
         }
+
+        val main = asset(apk)
+        val helperAsset = helper?.let { asset(it) }
         return Release(
             version = version,
             notes = json.optString("body").trim(),
-            apkUrl = apk.getString("browser_download_url"),
-            apkName = apkName,
-            apkSize = apk.getLong("size"),
-            sha256 = sha,
+            apkUrl = main.url,
+            apkName = main.name,
+            apkSize = main.size,
+            sha256 = main.sha256,
+            helper = helperAsset,
+            helperVersion = helperAsset?.name?.removePrefix(HELPER_PREFIX)?.removeSuffix(".apk"),
         ).also { lastRelease = it }
     }
 
-    private fun download(context: Context, release: Release): File {
+    private fun download(context: Context, release: Release): File =
+        downloadAsset(context, Asset(release.apkName, release.apkUrl, release.apkSize, release.sha256)) { done, total ->
+            _state.value = UpdateState.Downloading(release, done, total)
+        }
+
+    /** Downloads [asset] into cache/updates, reporting progress, and checks its SHA-256 if known. */
+    internal fun downloadAsset(context: Context, asset: Asset, onProgress: (done: Long, total: Long) -> Unit): File {
         val dir = File(context.cacheDir, "updates").apply {
             deleteRecursively()
             mkdirs()
         }
-        val file = File(dir, release.apkName)
-        val conn = open(release.apkUrl)
-        val total = conn.contentLengthLong.takeIf { it > 0 } ?: release.apkSize
+        val file = File(dir, asset.name)
+        val conn = open(asset.url)
+        val total = conn.contentLengthLong.takeIf { it > 0 } ?: asset.size
         conn.inputStream.use { input ->
             file.outputStream().use { output ->
                 val buf = ByteArray(64 * 1024)
@@ -187,15 +208,20 @@ object Updater {
                     if (n < 0) break
                     output.write(buf, 0, n)
                     done += n
-                    if (done - lastReport > 32 * 1024 || done == total) {
-                        _state.value = UpdateState.Downloading(release, done, total)
+                    if (done - lastReport > 32 * 1024) {
+                        onProgress(done, total)
                         lastReport = done
                     }
                 }
-                _state.value = UpdateState.Downloading(release, done, total)
+                onProgress(done, total)
             }
         }
-        DiagLog.i("Updater", "downloaded ${release.apkName} (${file.length()} bytes)")
+        DiagLog.i("Updater", "downloaded ${asset.name} (${file.length()} bytes)")
+        val expected = asset.sha256
+        if (expected != null && !sha256(file).equals(expected, ignoreCase = true)) {
+            file.delete()
+            throw IOException("the download is damaged (checksum doesn't match)")
+        }
         return file
     }
 

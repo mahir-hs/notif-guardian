@@ -20,6 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import dev.notifguardian.App
 import dev.notifguardian.BuildConfig
+import dev.notifguardian.update.HelperInstallState
+import dev.notifguardian.update.HelperInstaller
+import dev.notifguardian.update.Release
 import dev.notifguardian.update.UpdateState
 import dev.notifguardian.update.Updater
 import java.util.Locale
@@ -61,6 +64,7 @@ fun UpdateSection() {
 
             is UpdateState.UpToDate -> {
                 Text("You have the latest version.", style = MaterialTheme.typography.bodyLarge)
+                HelperUpdate(s.release)
                 TextButton(onClick = { Updater.check(scope) }) { Text("Check again") }
             }
 
@@ -83,6 +87,7 @@ fun UpdateSection() {
                     onClick = { Updater.downloadAndInstall(context, scope, s.release) },
                     modifier = Modifier.padding(top = 12.dp),
                 ) { Text("Download and install") }
+                HelperUpdate(s.release)
             }
 
             is UpdateState.NeedsInstallPermission -> {
@@ -124,6 +129,35 @@ fun UpdateSection() {
                 }
             }
         }
+    }
+}
+
+/** Offers a newer Guardian Helper from [release], if it has one and a helper is installed. */
+@Composable
+private fun HelperUpdate(release: Release) {
+    val context = LocalContext.current
+    val p = LocalPalette.current
+    val installed = HelperInstaller.installedVersion(context) ?: return // not installed: set up in its own section
+    if (!HelperInstaller.isUpdate(context, release)) return
+    Column(Modifier.padding(top = 16.dp)) {
+        Text(
+            "Guardian Helper ${release.helperVersion} is available (you have $installed).",
+            style = MaterialTheme.typography.bodyLarge,
+        )
+        Text(
+            "After it installs, HyperOS turns the helper's autostart off. Guardian shows you where to turn it back on.",
+            style = MaterialTheme.typography.bodySmall,
+            color = p.inkMuted,
+            modifier = Modifier.padding(top = 2.dp),
+        )
+        val state by HelperInstaller.state.collectAsState()
+        if (state == HelperInstallState.Idle || state is HelperInstallState.Failed) {
+            OutlinedButton(
+                onClick = { HelperInstaller.install(context, (context.applicationContext as App).scope) },
+                modifier = Modifier.padding(top = 8.dp),
+            ) { Text("Install helper update") }
+        }
+        HelperInstallProgress(Modifier.padding(top = 8.dp))
     }
 }
 

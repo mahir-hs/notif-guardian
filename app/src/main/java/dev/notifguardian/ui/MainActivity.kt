@@ -60,7 +60,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
-import dev.notifguardian.BuildConfig
+import dev.notifguardian.App
 import dev.notifguardian.ProtectedApps
 import dev.notifguardian.TargetApp
 import dev.notifguardian.diag.Diagnostics
@@ -71,6 +71,8 @@ import dev.notifguardian.monitor.KeepAliveService
 import dev.notifguardian.status.AppStatus
 import dev.notifguardian.status.AppStatusChecker
 import dev.notifguardian.status.Tri
+import dev.notifguardian.update.HelperInstaller
+import dev.notifguardian.update.Updater
 import dev.notifguardian.xiaomi.MilletKeeper
 import dev.notifguardian.xiaomi.XiaomiSettings
 import dev.notifguardian.xiaomi.XiaomiSettings.Screen
@@ -361,16 +363,13 @@ private fun HelperSection(refresh: Int, onChanged: () -> Unit) {
         )
         if (!expanded) return@Column
         Group(Modifier.padding(top = 12.dp)) {
-            val website = BuildConfig.UPDATE_REPO.takeIf { it.contains('/') }?.let {
-                val (owner, name) = it.split('/', limit = 2)
-                "https://$owner.github.io/$name/#install"
-            }
             SetupRow(
                 "Guardian Helper installed",
-                "Download Guardian Helper and install it like this app. It has no icon; it works in the background.",
+                "Guardian downloads it from GitHub and opens the install screen. It has no icon; it works in the background.",
                 status.installed,
-                if (website != null) "Download" else null,
-            ) { website?.let { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it))) } }
+                if (Updater.configured) "Install" else null,
+            ) { HelperInstaller.install(context, (context.applicationContext as App).scope) }
+            if (!status.installed) HelperInstallProgress(Modifier.padding(start = 40.dp, end = 16.dp, bottom = 12.dp))
             if (status.installed) {
                 Divider()
                 SetupRow(
