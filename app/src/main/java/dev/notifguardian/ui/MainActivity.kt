@@ -247,6 +247,7 @@ private fun SetupSection(self: AppStatus?, listenerOn: Boolean, alertsOn: Boolea
                 SetupRow("Notification access", "Lets Guardian see when notifications arrive.", listenerOn, "Give access") {
                     context.startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
                 }
+                if (!listenerOn) RestrictedSettingsHint()
                 Divider()
                 SetupRow("Guardian's alerts", "So it can tell you when an app is stopped.", alertsOn, "Allow") {
                     if (Build.VERSION.SDK_INT >= 33) {
@@ -296,6 +297,30 @@ private fun SetupSection(self: AppStatus?, listenerOn: Boolean, alertsOn: Boolea
                 }
             }
         }
+    }
+}
+
+/**
+ * Android 13+ blocks notification access for apps installed from a downloaded file until the user
+ * allows "restricted settings" once in App info. Nothing in the app can avoid it.
+ */
+@Composable
+private fun RestrictedSettingsHint() {
+    val context = LocalContext.current
+    val p = LocalPalette.current
+    Column(Modifier.padding(start = 40.dp, end = 16.dp, bottom = 12.dp)) {
+        Text(
+            "If Android says it's blocked because the app comes from an unknown source: open App info, " +
+                "tap ⋮ at the top right, choose \"Allow restricted settings\", then tap Give access again. " +
+                "This is needed once for apps installed from a downloaded file.",
+            style = MaterialTheme.typography.bodySmall,
+            color = p.inkMuted,
+        )
+        TextButton(onClick = {
+            context.startActivity(
+                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", context.packageName, null)),
+            )
+        }) { Text("Open App info") }
     }
 }
 

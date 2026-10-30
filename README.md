@@ -64,7 +64,10 @@ Download `NotifGuardian-x.y.z.apk` and `GuardianHelper-x.y.z.apk` from the
 
 Install the APK normally and open it. In **Guardian is set up**:
 
-1. **Notification access**: lets it measure delays.
+1. **Notification access**: lets it measure delays. If Android blocks it because the app "comes
+   from an unknown source", open Guardian's **App info → ⋮ → Allow restricted settings**, then try
+   again. Android asks this once for any app installed from a downloaded file (Android 13+
+   "restricted settings"); installs with `adb install` aren't affected.
 2. **Guardian's alerts**: allow notifications.
 3. **No battery restrictions**, **Autostart**, and **Not frozen when the screen is off**: each row
    opens the right HyperOS screen. Set Battery saver to **No restrictions**.
