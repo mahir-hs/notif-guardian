@@ -1,0 +1,15 @@
+{
+  "message": "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.",
+  "methods": [
+    {
+      "name": "bKash",
+      "value": "01972697374",
+      "note": "Personal account: use Send Money"
+    },
+    {
+      "name": "Nagad",
+      "value": "01972697374",
+      "note": "Personal account: use Send Money"
+    }
+  ]
+}

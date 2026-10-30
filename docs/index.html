@@ -146,6 +146,19 @@
   .faq summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: outside; }
   .faq details p { color: var(--muted); margin: .7rem 0 0; }
 
+  .donate { list-style: none; padding: 0; margin: 1.5rem 0 0; max-width: 34rem; background: var(--white); border-radius: 20px; }
+  .donate li { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
+  .donate li:first-child { border-top: 0; }
+  .donate .what { flex: 1; }
+  .donate strong { display: block; }
+  .donate .value { font: 600 1.15rem var(--body); letter-spacing: .02em; }
+  .donate .note { color: var(--muted); font-size: .9rem; }
+  .donate button, .donate a.go {
+    font: 600 .95rem var(--body); border: 2px solid var(--line); background: none; color: var(--ink);
+    padding: .5rem 1rem; border-radius: 999px; cursor: pointer; text-decoration: none;
+  }
+  .donate button:hover, .donate a.go:hover { border-color: var(--ink); }
+
   footer { margin-top: 4.5rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
 
@@ -253,6 +266,15 @@
     </div>
   </section>
 
+  <section class="block" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">Support development</h2>
+      <p class="intro" id="support-message">Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.</p>
+      <ul class="donate" id="donate-list" hidden></ul>
+      <p id="donate-fallback">Starring the project on <a href="https://github.com/mahir-hs/notif-guardian">GitHub</a> helps more people find it.</p>
+    </div>
+  </section>
+
   <section class="block faq" aria-labelledby="faq">
     <div class="wrap">
       <h2 id="faq">Questions</h2>
@@ -287,7 +309,7 @@
 <footer>
   <div class="wrap">
     <span>Notif Guardian is free software under the MIT license.</span>
-    <span><a href="https://github.com/mahir-hs/notif-guardian">Source</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">Report a problem</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">All releases</a></span>
+    <span><a href="#support">Donate</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian">Source</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">Report a problem</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">All releases</a></span>
   </div>
 </footer>
 
@@ -304,6 +326,38 @@
       verdict.textContent = verdict.dataset[mode];
     });
   });
+
+  // Donation options come from support.json, shared with the app
+  fetch('support.json', { cache: 'no-cache' })
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(info => {
+      if (info.message) document.getElementById('support-message').textContent = info.message;
+      const list = document.getElementById('donate-list');
+      (info.methods || []).forEach(m => {
+        const li = document.createElement('li');
+        const what = document.createElement('div');
+        what.className = 'what';
+        const name = document.createElement('strong');
+        name.textContent = m.name;
+        what.appendChild(name);
+        if (m.value) { const v = document.createElement('span'); v.className = 'value'; v.textContent = m.value; what.appendChild(v); }
+        if (m.note) { const n = document.createElement('div'); n.className = 'note'; n.textContent = m.note; what.appendChild(n); }
+        li.appendChild(what);
+        if (m.url) {
+          const a = document.createElement('a');
+          a.className = 'go'; a.href = m.url; a.rel = 'noopener'; a.textContent = 'Open';
+          li.appendChild(a);
+        } else if (m.value) {
+          const b = document.createElement('button');
+          b.type = 'button'; b.textContent = 'Copy';
+          b.addEventListener('click', () => navigator.clipboard.writeText(m.value).then(() => { b.textContent = 'Copied'; }));
+          li.appendChild(b);
+        }
+        list.appendChild(li);
+      });
+      if (list.children.length) list.hidden = false;
+    })
+    .catch(() => {});
 
   // Point the download buttons straight at the latest release's APKs
   fetch('https://api.github.com/repos/mahir-hs/notif-guardian/releases/latest')

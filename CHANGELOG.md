@@ -3,6 +3,14 @@
 All notable changes to Notif Guardian. Each version's section is also its GitHub release notes,
 which the in-app updater shows before you install.
 
+## 0.1.2 (2026-10-30)
+
+- New **Support development** section: if Notif Guardian fixed your notifications, you can now
+  donate by bKash or Nagad. Tap **Show ways to donate** to see the options, with a button to copy
+  the number. The options load from the project website only when you tap it.
+
+Guardian Helper is unchanged. If you already have it, you don't need to reinstall it.
+
 ## 0.1.1 (2026-10-30)
 
 - Much smaller download: 21 MB down to 2.2 MB.

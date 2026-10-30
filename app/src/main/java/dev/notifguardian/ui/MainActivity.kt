@@ -126,6 +126,7 @@ private fun MainScreen() {
         }
         item { LateSection(events) }
         item { UpdateSection() }
+        item { SupportSection() }
         item { DiagnosticsSection() }
     }
 

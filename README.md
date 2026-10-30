@@ -50,8 +50,9 @@ can ask it.
 
 ## Privacy
 
-Guardian goes online only when you tap **Check for updates**, and then only to GitHub, to read
-this repo's latest release and download it. Nothing else leaves your phone unless you share a
+Guardian goes online only when you tap **Check for updates** (to read this repo's latest release
+and download it) or **Show ways to donate** (to load the donation options from this project's
+website), and only to GitHub. Nothing else leaves your phone unless you share a
 diagnostics file yourself. Guardian reads notification timing (who posted, when), never the text.
 Guardian Helper has no internet permission at all.
 
@@ -146,6 +147,13 @@ The in-app updater reads the latest release of the repo set in `gradle.propertie
 
 The updater only updates Guardian. Guardian Helper rarely changes; when it does, reinstall it with
 adb as above (and turn its autostart back on).
+
+## Support development
+
+Notif Guardian is free. If it fixed your notifications, you can donate:
+see [the website](https://mahir-hs.github.io/notif-guardian/#support). The options are listed in
+`docs/support.json`, which both the website and the app read, so they can change without an app
+update.
 
 ## License
 
