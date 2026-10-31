@@ -123,6 +123,17 @@
   h2 { font: 700 clamp(1.7rem, 3.4vw, 2.4rem)/1.1 var(--display); letter-spacing: -0.02em; margin: 0 0 1rem; }
   p.intro { color: var(--muted); font-size: 1.1rem; max-width: 40rem; margin-top: 0; }
 
+
+  .shots { list-style: none; padding: 0; margin: 2.25rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .shots figure { margin: 0; }
+  .shots img {
+    display: block; width: 100%; height: auto; border-radius: 28px; background: var(--ink);
+    border: 6px solid var(--ink); box-shadow: 0 18px 40px -18px rgba(20, 33, 61, .45);
+  }
+  .shots figcaption { margin-top: .9rem; color: var(--muted); font-size: .95rem; }
+  .shots figcaption b { display: block; color: var(--ink); font: 700 1.05rem var(--display); margin-bottom: .1rem; }
+  .shots-note { color: var(--muted); font-size: .9rem; margin: 1.5rem 0 0; }
+
   .features { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; }
   .features li { padding: 1.25rem 0; border-top: 1px solid var(--line); }
   .features strong { display: block; font-weight: 600; margin-bottom: .2rem; }
@@ -174,6 +185,8 @@
     .hop { padding: 0 0 1.4rem 2.2rem; }
     .hop::before { top: .25rem; bottom: .25rem; left: 0; right: auto; width: 12px; height: auto; }
     .features { grid-template-columns: 1fr; }
+    .shots { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1.25rem; padding-bottom: 1rem; margin-right: -1.25rem; }
+    .shots li { flex: 0 0 72%; scroll-snap-align: start; }
     h1 { margin-top: 2.5rem; }
   }
   @media (prefers-reduced-motion: reduce) { .hop::before { transition: none; } }
@@ -240,6 +253,19 @@
         <li><strong>Measures late notifications</strong><span>Shows how late each one arrived, so you can see it working.</span></li>
         <li><strong>Private by design</strong><span>Reads when a notification arrived, never what it says. Goes online only to check for updates.</span></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="shots">
+    <div class="wrap">
+      <h2 id="shots">See it on a real phone</h2>
+      <p class="intro">Every app you protect gets five checks, and a red one comes with a button that fixes it.</p>
+      <ul class="shots">
+        <li><figure><img src="screenshots/home.png" width="1220" height="2552" loading="lazy" alt="Notif Guardian home screen: 6 of 7 apps can reach you, with a Fix button for the one app that can't"><figcaption><b>One-glance status</b>How many apps can reach you, and a button for what's broken.</figcaption></figure></li>
+        <li><figure><img src="screenshots/helper.png" width="1220" height="2552" loading="lazy" alt="Keep Google Play services awake checklist with every row green"><figcaption><b>Keep Google Play services awake</b>Guardian Helper's setup checklist, all green.</figcaption></figure></li>
+        <li><figure><img src="screenshots/apps.png" width="1220" height="2552" loading="lazy" alt="Protected apps list with five health checks each, and the late notifications section"><figcaption><b>Per-app health</b>Five checks per app, and a log of late notifications.</figcaption></figure></li>
+      </ul>
+      <p class="shots-note">Screenshots from a Redmi Note 14 Pro+ running HyperOS 3.</p>
     </div>
   </section>
 
