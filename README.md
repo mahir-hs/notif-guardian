@@ -12,7 +12,7 @@ arrives when it's sent, not when you unlock the phone.
 [![Latest release](https://img.shields.io/github/v/release/mahir-hs/notif-guardian?style=for-the-badge&color=3FBF9A&labelColor=14213D)](../../releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/mahir-hs/notif-guardian/total?style=for-the-badge&color=3FBF9A&labelColor=14213D)](../../releases)
 [![Stars](https://img.shields.io/github/stars/mahir-hs/notif-guardian?style=for-the-badge&color=3FBF9A&labelColor=14213D)](../../stargazers)
-[![License: MIT](https://img.shields.io/badge/license-MIT-3FBF9A?style=for-the-badge&labelColor=14213D)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-3FBF9A?style=for-the-badge&labelColor=14213D)](#license)
 ![Android 11+](https://img.shields.io/badge/Android-11%2B-3FBF9A?style=for-the-badge&labelColor=14213D&logo=android&logoColor=white)
 
 [**Download**](../../releases/latest) · [**Website**](https://mahir-hs.github.io/notif-guardian/) · [Changelog](CHANGELOG.md) · [FAQ](#faq) · [Troubleshooting](#troubleshooting)
@@ -284,4 +284,33 @@ update.
 
 ## License
 
-[MIT](LICENSE)
+Released under the MIT License.
+
+<details>
+<summary><b>Read the full license text</b></summary>
+
+```text
+MIT License
+
+Copyright (c) 2026 Notif Guardian contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+</details>
