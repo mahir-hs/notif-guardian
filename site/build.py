@@ -15,6 +15,7 @@ and add the code to LANGS below.
 """
 import html
 import json
+import os
 import re
 import sys
 from datetime import date
@@ -26,6 +27,18 @@ LANG_DIR = Path(__file__).resolve().parent / "lang"
 SITE = "https://mahir-hs.github.io/notif-guardian/"
 FONTS = ("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700"
          "&family=IBM+Plex+Sans:wght@400;500;600&display=swap")
+
+# GoatCounter site code (the "xxx" in https://xxx.goatcounter.com). Cookie-free page-view counter.
+# Leave empty to build without any analytics. Can also be set with the GOATCOUNTER_CODE env var.
+GOATCOUNTER_CODE = os.environ.get("GOATCOUNTER_CODE", "mahir")
+
+
+def analytics_tag():
+    if not GOATCOUNTER_CODE:
+        return ""
+    return (f'<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" '
+            'async src="https://gc.zgo.at/count.js"></script>' "\n")
+
 
 # code (also the folder name), name shown in the picker, Open Graph locale, browser language tags that map here
 LANGS = [
@@ -128,7 +141,7 @@ def render(template, code, name, og_locale, en, missing):
     values = dict(t)
     values.update(
         lang=code, url=url_for(code), base=base, home=base or "./", fonts=FONTS, og_locale=og_locale,
-        hreflang=hreflang, options=options, jsonld=jsonld(t),
+        analytics=analytics_tag(), hreflang=hreflang, options=options, jsonld=jsonld(t),
         redirect=redirect_script() if code == "en" else "",
         release_meta_static=t["release_meta_static"],
         page_json=json.dumps({"lang": code, "base": base, "langs": langs}, ensure_ascii=False),
