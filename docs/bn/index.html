@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notif Guardian: Xiaomi, Redmi ও POCO (HyperOS) ফোনে দেরিতে আসা নোটিফিকেশন ঠিক করুন</title>
+<meta name="description" content="আপনার Xiaomi, Redmi বা POCO ফোনে WhatsApp, Telegram বা Gmail-এর নোটিফিকেশন কি অ্যাপ খুললে তবেই আসে? Notif Guardian কারণ খুঁজে বের করে এবং HyperOS-কে সেগুলো বন্ধ (freeze) করা থেকে আটকায়। বিনামূল্যে, ওপেন সোর্স, রুট ছাড়াই।">
+<link rel="canonical" href="https://mahir-hs.github.io/notif-guardian/bn/">
+<link rel="alternate" hreflang="en" href="https://mahir-hs.github.io/notif-guardian/">
+<link rel="alternate" hreflang="bn" href="https://mahir-hs.github.io/notif-guardian/bn/">
+<link rel="alternate" hreflang="hi" href="https://mahir-hs.github.io/notif-guardian/hi/">
+<link rel="alternate" hreflang="id" href="https://mahir-hs.github.io/notif-guardian/id/">
+<link rel="alternate" hreflang="zh" href="https://mahir-hs.github.io/notif-guardian/zh/">
+<link rel="alternate" hreflang="es" href="https://mahir-hs.github.io/notif-guardian/es/">
+<link rel="alternate" hreflang="ru" href="https://mahir-hs.github.io/notif-guardian/ru/">
+<link rel="alternate" hreflang="x-default" href="https://mahir-hs.github.io/notif-guardian/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:title" content="Notif Guardian: Xiaomi HyperOS-এ সময়মতো নোটিফিকেশন">
+<meta property="og:description" content="স্ক্রিন বন্ধ থাকলে HyperOS Google Play services বন্ধ করে দেয়, তাই আনলক না করা পর্যন্ত মেসেজ আটকে থাকে। Notif Guardian তা থামায়। বিনামূল্যে, ওপেন সোর্স, রুট ছাড়াই।">
+<meta property="og:url" content="https://mahir-hs.github.io/notif-guardian/bn/">
+<meta property="og:image" content="https://mahir-hs.github.io/notif-guardian/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Xiaomi ফোনে Notif Guardian-এর হোম স্ক্রিন, পাশে শিরোনাম: স্ক্রিন বন্ধ থাকলেও মেসেজ সময়মতো।">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14213D">
+<meta name="google-site-verification" content="iDzKotBsbsBLGl-H54MCP12xof1OyGMonS7u95FbIvY">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="icon" href="../icon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="../icon-192.png" type="image/png" sizes="192x192">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notif Guardian",
+  "operatingSystem": "Android (Xiaomi HyperOS)",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Xiaomi HyperOS-কে Google Play services ও মেসেজিং অ্যাপ বন্ধ করা থেকে আটকায়, যাতে WhatsApp, Telegram ও Gmail-এর নোটিফিকেশন সঙ্গে সঙ্গে আসে।",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://mahir-hs.github.io/notif-guardian/",
+  "downloadUrl": "https://github.com/mahir-hs/notif-guardian/releases/latest",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "অ্যাপ না খুললে নোটিফিকেশন আসে না কেন?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "স্ক্রিন বন্ধ থাকলে HyperOS Google Play services বন্ধ (freeze) করে দেয়। প্রায় সব অ্যাপের পুশ নোটিফিকেশন এর মধ্য দিয়েই আসে, তাই আনলক না করা পর্যন্ত সেগুলো অপেক্ষা করে। কোনো অ্যাপের ব্যাটারি সেভার \"No restrictions\" করলে সেই অ্যাপের উপকার হয়, কিন্তু Google Play services-এর জন্য HyperOS-এ এমন সেটিং নেই। Notif Guardian ঠিক এই ফাঁকটাই পূরণ করে।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "রুট লাগে কি?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "না, কম্পিউটারও লাগে না: দুটি অ্যাপই ফোনে ইনস্টল হয়, আর রিবুটের পরও সবকিছু চলতে থাকে। শুধু ফোন হেল্পার ইনস্টল করতে না চাইলে একবার কম্পিউটার লাগে।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "কোন কোন ফোনে কাজ করে?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HyperOS চালিত Xiaomi, Redmi ও POCO ফোনে। HyperOS 3 চালানো Redmi Note 14 Pro+ ফোনে পরীক্ষা করা হয়েছে। পুরনো MIUI সংস্করণে আংশিক কাজ করতে পারে। কিছু কাজ না করলে অ্যাপে Share diagnostics চাপুন এবং GitHub-এ একটি issue খুলুন।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ব্যাটারি কি বেশি খরচ হয়?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "প্রায় না। Guardian মিনিটে একবার আপনার অ্যাপগুলো পরীক্ষা করে এবং HyperOS তালিকা বদলালে সাড়া দেয়। Xiaomi ছাড়া প্রতিটি Android ফোন তো Google Play services জাগিয়েই রাখে।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Telegram কখনো কখনো এখনও একটু দেরিতে আসে। কেন?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "আপনি যদি Telegram Desktop বা Web-এ সক্রিয় থাকেন, Telegram-এর সার্ভার ইচ্ছা করেই ফোনে পুশ পাঠানো আটকে রাখে। পুশ আসামাত্র ফোন সেটি দেখায়।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "এটি কি আমার মেসেজ পড়ে?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "না। কোন অ্যাপ কখন নোটিফিকেশন দিয়েছে তা-ই শুধু রেকর্ড হয়, লেখা কখনো নয়। আপনি নিজে ডায়াগনস্টিক ফাইল শেয়ার না করলে ফোন থেকে কিছুই বাইরে যায় না।"
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="bar" aria-label="সাইট">
+      <a class="brand" href="../"><img src="../icon.svg" alt="">Notif Guardian</a>
+      <div class="bar-end">
+        <a class="gh" href="https://github.com/mahir-hs/notif-guardian">GitHub-এ সোর্স কোড</a>
+        <div class="lang">
+          <select id="lang-select" aria-label="ভাষা">
+            <option value="en">English</option>
+            <option value="bn" selected>বাংলা</option>
+            <option value="hi">हिन्दी</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="zh">简体中文</option>
+            <option value="es">Español</option>
+            <option value="ru">Русский</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+    <h1>স্ক্রিন বন্ধ থাকলেও মেসেজ সময়মতো।</h1>
+    <p class="lede">Xiaomi, Redmi ও POCO ফোনে WhatsApp, Telegram ও Gmail-এর নোটিফিকেশন প্রায়ই আসে ফোন আনলক করলে বা অ্যাপ খুললে। Notif Guardian এর কারণ খুঁজে বের করে এবং HyperOS-কে সেগুলো আটকে রাখতে দেয় না।</p>
+    <div class="downloads">
+      <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Notif Guardian ডাউনলোড করুন</a>
+      <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Guardian Helper ডাউনলোড করুন</a>
+    </div>
+    <p class="meta" id="release-meta">বিনামূল্যে ও ওপেন সোর্স। রুট লাগে না, কম্পিউটারও লাগে না। HyperOS-এর জন্য Android APK।</p>
+  </div>
+</header>
+
+<section class="path-section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">আপনার মেসেজ দেরিতে আসে কেন</h2>
+    <p class="intro">প্রায় সব অ্যাপের নোটিফিকেশন আপনার ফোনে পৌঁছায় একটিমাত্র সংযোগ দিয়ে, যেটি চালু রাখে Google Play services। একটি WhatsApp মেসেজের আপনার কাছে আসার পথ অনুসরণ করুন।</p>
+    <div class="toggle" role="group" aria-label="মেসেজ পৌঁছানোর পথ দেখান">
+      <button type="button" data-set="hyperos" aria-pressed="true">HyperOS, স্ক্রিন বন্ধ</button>
+      <button type="button" data-set="guardian" aria-pressed="false">Notif Guardian থাকলে</button>
+    </div>
+    <ol class="path" id="path" data-mode="hyperos">
+      <li class="hop"><strong>আপনার বন্ধু মেসেজ পাঠায়</strong><span>WhatsApp-এর সার্ভার সেটি Google-কে দেয়।</span><b class="state">পাঠানো হয়েছে</b></li>
+      <li class="hop"><strong>Google-এর পুশ সার্ভিস</strong><span>সঙ্গে সঙ্গে আপনার ফোনে পাঠিয়ে দেয়।</span><b class="state">পৌঁছেছে</b></li>
+      <li class="hop gms"><strong>Google Play services</strong><span>ফোনে সেটি গ্রহণ করে অ্যাপকে জাগায়।</span><b class="state" data-hyperos="HyperOS বন্ধ করে দিয়েছে" data-guardian="জেগে আছে">HyperOS বন্ধ করে দিয়েছে</b></li>
+      <li class="hop after"><strong>WhatsApp</strong><span>মেসেজটি এনে দেখায়।</span><b class="state" data-hyperos="জাগানোই হয়নি" data-guardian="দেখায়">জাগানোই হয়নি</b></li>
+      <li class="hop after"><strong>আপনার লক স্ক্রিন</strong><span>আপনি নোটিফিকেশন দেখতে পান।</span><b class="state" data-hyperos="শুধু আনলক করলে" data-guardian="সঙ্গে সঙ্গে">শুধু আনলক করলে</b></li>
+    </ol>
+    <p class="verdict" id="verdict" data-hyperos="স্ক্রিন বন্ধ হলেই HyperOS Google Play services বন্ধ করে দেয়, আর এটি ঠেকানোর মতো কোনো ব্যাটারি সেটিং আপনার হাতে নেই।" data-guardian="Notif Guardian Google Play services-কে HyperOS-এর ছাড়ের তালিকায় রাখে, আর HyperOS সরিয়ে দিলে মিলিসেকেন্ডের মধ্যে আবার যোগ করে দেয়।">স্ক্রিন বন্ধ হলেই HyperOS Google Play services বন্ধ করে দেয়, আর এটি ঠেকানোর মতো কোনো ব্যাটারি সেটিং আপনার হাতে নেই।</p>
+  </div>
+</section>
+
+<main>
+  <section class="block" aria-labelledby="what">
+    <div class="wrap">
+      <h2 id="what">এটি কী করে</h2>
+      <p class="intro">যেসব অ্যাপের নোটিফিকেশন আপনার কাছে গুরুত্বপূর্ণ সেগুলো বেছে নিন। Guardian সেগুলোর ওপর নজর রাখে এবং HyperOS যা নষ্ট করে তা ঠিক করে।</p>
+      <ul class="features">
+        <li><strong>Google Play services জাগিয়ে রাখে</strong><span>HyperOS-এর সেটিংসে যা সম্ভব নয়, অথচ প্রতিটি অ্যাপ যার ওপর নির্ভর করে, সেই একমাত্র সমাধান।</span></li>
+        <li><strong>প্রতিটি অ্যাপের পথ পরীক্ষা করে</strong><span>চলছে কি না, অটোস্টার্ট, ব্যাটারি সেভার, ব্যাকগ্রাউন্ড অ্যাক্টিভিটি, বন্ধ করা হয়েছে কি না, এক নজরে।</span></li>
+        <li><strong>এক ট্যাপে সঠিক সেটিং</strong><span>প্রতিটি সমস্যার জন্য HyperOS-এর ঠিক সেই স্ক্রিনটি খুলে দেয়, আপনাকে খুঁজতে হয় না।</span></li>
+        <li><strong>কোনো অ্যাপ বন্ধ হয়ে গেলে জানায়</strong><span>এবং এক ট্যাপে আবার চালু করে দেয়, যাতে কিছু মিস না হয়।</span></li>
+        <li><strong>দেরিতে আসা নোটিফিকেশন মাপে</strong><span>প্রতিটি নোটিফিকেশন কত দেরিতে এল তা দেখায়, ফলে কাজ হচ্ছে কি না নিজেই বুঝতে পারবেন।</span></li>
+        <li><strong>গোপনীয়তা নিশ্চিত</strong><span>নোটিফিকেশন কখন এল তা দেখে, কী লেখা ছিল তা কখনোই নয়। ইন্টারনেটে যায় শুধু আপডেট দেখার সময়।</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="shots">
+    <div class="wrap">
+      <h2 id="shots">আসল ফোনে দেখুন</h2>
+      <p class="intro">আপনি যে অ্যাপ সুরক্ষিত রাখেন তার প্রতিটির পাঁচটি পরীক্ষা হয়, আর লাল চিহ্নের সঙ্গে থাকে ঠিক করার বোতাম।</p>
+      <ul class="shots">
+        <li><figure><img src="../screenshots/home.png" width="1220" height="2552" loading="lazy" alt="Notif Guardian-এর হোম স্ক্রিন: ৭টির মধ্যে ৬টি অ্যাপ আপনার কাছে পৌঁছাতে পারছে, বাকি একটির জন্য Fix বোতাম"><figcaption><b>এক নজরে অবস্থা</b>কয়টি অ্যাপ আপনার কাছে পৌঁছাতে পারছে, আর যা নষ্ট তার জন্য একটি বোতাম।</figcaption></figure></li>
+        <li><figure><img src="../screenshots/helper.png" width="1220" height="2552" loading="lazy" alt="Keep Google Play services awake চেকলিস্ট, প্রতিটি সারি সবুজ"><figcaption><b>Google Play services জাগিয়ে রাখুন</b>Guardian Helper-এর সেটআপ চেকলিস্ট, সব সবুজ।</figcaption></figure></li>
+        <li><figure><img src="../screenshots/apps.png" width="1220" height="2552" loading="lazy" alt="সুরক্ষিত অ্যাপের তালিকা, প্রতিটির পাঁচটি স্বাস্থ্য পরীক্ষা সহ, এবং দেরিতে আসা নোটিফিকেশনের অংশ"><figcaption><b>প্রতিটি অ্যাপের অবস্থা</b>প্রতি অ্যাপে পাঁচটি পরীক্ষা, আর দেরিতে আসা নোটিফিকেশনের তালিকা।</figcaption></figure></li>
+      </ul>
+      <p class="shots-note">স্ক্রিনশট HyperOS 3 চালানো Redmi Note 14 Pro+ থেকে নেওয়া। অ্যাপটি নিজে ইংরেজিতে।</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="install">
+    <div class="wrap">
+      <h2 id="install">ইনস্টল করুন</h2>
+      <p class="intro">একবারই, প্রায় দশ মিনিট, সবকিছু ফোনেই। কম্পিউটার লাগবে না।</p>
+      <ol class="steps">
+        <li>
+          <h3>Notif Guardian ইনস্টল করুন</h3>
+          <p>উপরে থেকে <code>NotifGuardian</code> ডাউনলোড করুন, ফোনে খুলুন এবং আপনার ব্রাউজার বা ফাইল ম্যানেজার থেকে ইনস্টলের অনুমতি দিন। অ্যাপ খুলে <b>Guardian is set up</b>-এর প্রতিটি সারি সবুজ করুন, তারপর <b>Add apps</b> চাপুন।</p>
+          <p>অ্যাপটি "অজানা উৎস থেকে এসেছে" বলে Android যদি নোটিফিকেশন অ্যাক্সেস (<b>Notification access</b>) আটকে দেয়: অ্যাপের অ্যাপ তথ্য (<b>App info</b>) খুলুন, উপরে ডানে <b>&#8942;</b> চাপুন, <b>Allow restricted settings</b> বেছে নিন, তারপর আবার চেষ্টা করুন। ডাউনলোড করা ফাইল থেকে ইনস্টল করা যেকোনো অ্যাপের জন্য Android এটি একবার জিজ্ঞাসা করে।</p>
+        </li>
+        <li>
+          <h3>Guardian Helper ইনস্টল করুন</h3>
+          <p>উপরে থেকে <code>GuardianHelper</code> ডাউনলোড করুন এবং একই ভাবে ইনস্টল করুন। এর কোনো আইকন নেই: এটি Notif Guardian-এর জন্য ব্যাকগ্রাউন্ডে কাজ করে। HyperOS সতর্ক করতে পারে যে এটি Android-এর পুরনো সংস্করণের জন্য তৈরি; এটি স্বাভাবিক, কারণ হেল্পার কাজ করতে পারে কেবল এভাবেই।</p>
+          <p>ফোন যদি ইনস্টলই করতে না চায়, তাহলে কম্পিউটার থেকে ইনস্টল করুন: ডেভেলপার অপশনে <b>USB debugging</b> ও <b>Install via USB</b> চালু করুন, ফোন কানেক্ট করুন এবং চালান</p>
+          <pre dir="ltr">adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
+        </li>
+        <li>
+          <h3>অ্যাপে শেষ করুন</h3>
+          <p><b>Keep Google Play services awake</b> খুলুন এবং প্রতিটি সারি সবুজ করুন:</p>
+          <ul>
+            <li>হেল্পারের জন্য সিস্টেম সেটিং পরিবর্তনের অনুমতি (<b>Modify system settings</b>) দিন</li>
+            <li>হেল্পারের <b>Autostart</b> (অটোস্টার্ট) চালু করুন</li>
+            <li>হেল্পারের <b>Battery saver</b> (ব্যাটারি সেভার) <b>No restrictions</b> (কোনো সীমাবদ্ধতা নেই) করুন</li>
+            <li><b>Open helper</b> চাপুন, Android-এর পর্যালোচনা নিশ্চিত করুন, তারপর <b>Test helper</b> চাপুন</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">উন্নয়নে সহায়তা করুন</h2>
+      <p class="intro" id="support-message">Notif Guardian বিনামূল্যে ও ওপেন সোর্স। এটি আপনার নোটিফিকেশন ঠিক করে দিলে সামান্য অনুদান প্রকল্পটি চালিয়ে যেতে সাহায্য করে।</p>
+      <div id="donate-groups"></div>
+      <p id="donate-elsewhere" class="elsewhere"><a href="https://github.com/mahir-hs/notif-guardian">GitHub</a>-এ প্রকল্পটিতে স্টার দিলে আরও মানুষ এটি খুঁজে পায়।</p>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq">
+    <div class="wrap">
+      <h2 id="faq">প্রশ্ন ও উত্তর</h2>
+      <details><summary>অ্যাপ না খুললে নোটিফিকেশন আসে না কেন?</summary><p>স্ক্রিন বন্ধ থাকলে HyperOS Google Play services বন্ধ (freeze) করে দেয়। প্রায় সব অ্যাপের পুশ নোটিফিকেশন এর মধ্য দিয়েই আসে, তাই আনলক না করা পর্যন্ত সেগুলো অপেক্ষা করে। কোনো অ্যাপের ব্যাটারি সেভার "No restrictions" করলে সেই অ্যাপের উপকার হয়, কিন্তু Google Play services-এর জন্য HyperOS-এ এমন সেটিং নেই। Notif Guardian ঠিক এই ফাঁকটাই পূরণ করে।</p></details>
+      <details><summary>রুট লাগে কি?</summary><p>না, কম্পিউটারও লাগে না: দুটি অ্যাপই ফোনে ইনস্টল হয়, আর রিবুটের পরও সবকিছু চলতে থাকে। শুধু ফোন হেল্পার ইনস্টল করতে না চাইলে একবার কম্পিউটার লাগে।</p></details>
+      <details><summary>কোন কোন ফোনে কাজ করে?</summary><p>HyperOS চালিত Xiaomi, Redmi ও POCO ফোনে। HyperOS 3 চালানো Redmi Note 14 Pro+ ফোনে পরীক্ষা করা হয়েছে। পুরনো MIUI সংস্করণে আংশিক কাজ করতে পারে। কিছু কাজ না করলে অ্যাপে <b>Share diagnostics</b> চাপুন এবং GitHub-এ একটি issue খুলুন।</p></details>
+      <details><summary>ব্যাটারি কি বেশি খরচ হয়?</summary><p>প্রায় না। Guardian মিনিটে একবার আপনার অ্যাপগুলো পরীক্ষা করে এবং HyperOS তালিকা বদলালে সাড়া দেয়। Xiaomi ছাড়া প্রতিটি Android ফোন তো Google Play services জাগিয়েই রাখে।</p></details>
+      <details><summary>Telegram কখনো কখনো এখনও একটু দেরিতে আসে। কেন?</summary><p>আপনি যদি Telegram Desktop বা Web-এ সক্রিয় থাকেন, Telegram-এর সার্ভার ইচ্ছা করেই ফোনে পুশ পাঠানো আটকে রাখে। পুশ আসামাত্র ফোন সেটি দেখায়।</p></details>
+      <details><summary>এটি কি আমার মেসেজ পড়ে?</summary><p>না। কোন অ্যাপ কখন নোটিফিকেশন দিয়েছে তা-ই শুধু রেকর্ড হয়, লেখা কখনো নয়। আপনি নিজে ডায়াগনস্টিক ফাইল শেয়ার না করলে ফোন থেকে কিছুই বাইরে যায় না।</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Notif Guardian MIT লাইসেন্সের অধীনে একটি ফ্রি সফটওয়্যার।</span>
+    <span><a href="#support">অনুদান</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian">সোর্স কোড</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">সমস্যা জানান</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">সব রিলিজ</a></span>
+  </div>
+</footer>
+
+<script>
+window.PAGE = {"lang": "bn", "base": "../", "langs": {"en": "../", "bn": "../bn/", "hi": "../hi/", "id": "../id/", "zh": "../zh/", "es": "../es/", "ru": "../ru/"}};
+window.T = {"donate_in": "{name}-এ", "open": "খুলুন", "copy": "কপি", "copied": "কপি হয়েছে", "release_meta": "সংস্করণ {version}, প্রকাশের তারিখ {date}। বিনামূল্যে ও ওপেন সোর্স। রুট লাগে না, কম্পিউটারও লাগে না।", "dyn": {"Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian বিনামূল্যে ও ওপেন সোর্স। এটি আপনার নোটিফিকেশন ঠিক করে দিলে সামান্য অনুদান প্রকল্পটি চালিয়ে যেতে সাহায্য করে।", "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "বাংলাদেশের বাইরে? আন্তর্জাতিক অনুদান শীঘ্রই আসছে। ততদিন GitHub-এ প্রকল্পটিতে স্টার দিলে আরও মানুষ এটি খুঁজে পায়।", "Bangladesh": "বাংলাদেশ", "bKash and Nagad are mobile wallets used in Bangladesh.": "বিকাশ ও নগদ বাংলাদেশে ব্যবহৃত মোবাইল ওয়ালেট।", "Personal account: use Send Money": "পার্সোনাল অ্যাকাউন্ট: Send Money ব্যবহার করুন"}};
+</script>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notif Guardian：解决小米、Redmi、POCO（HyperOS）通知延迟问题</title>
+<meta name="description" content="小米、Redmi 或 POCO 手机上的 WhatsApp、Telegram、Gmail 通知，只有打开应用才会收到？Notif Guardian 找出原因，并阻止 HyperOS 冻结它们。免费、开源、无需 Root。">
+<link rel="canonical" href="https://mahir-hs.github.io/notif-guardian/zh/">
+<link rel="alternate" hreflang="en" href="https://mahir-hs.github.io/notif-guardian/">
+<link rel="alternate" hreflang="bn" href="https://mahir-hs.github.io/notif-guardian/bn/">
+<link rel="alternate" hreflang="hi" href="https://mahir-hs.github.io/notif-guardian/hi/">
+<link rel="alternate" hreflang="id" href="https://mahir-hs.github.io/notif-guardian/id/">
+<link rel="alternate" hreflang="zh" href="https://mahir-hs.github.io/notif-guardian/zh/">
+<link rel="alternate" hreflang="es" href="https://mahir-hs.github.io/notif-guardian/es/">
+<link rel="alternate" hreflang="ru" href="https://mahir-hs.github.io/notif-guardian/ru/">
+<link rel="alternate" hreflang="x-default" href="https://mahir-hs.github.io/notif-guardian/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Notif Guardian：让小米 HyperOS 上的通知准时到达">
+<meta property="og:description" content="息屏时 HyperOS 会冻结 Google Play 服务，消息要等到解锁才会出现。Notif Guardian 阻止这种情况。免费、开源、无需 Root。">
+<meta property="og:url" content="https://mahir-hs.github.io/notif-guardian/zh/">
+<meta property="og:image" content="https://mahir-hs.github.io/notif-guardian/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="小米手机上的 Notif Guardian 主屏幕，旁边的标题是：即使息屏，消息也准时到达。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14213D">
+<meta name="google-site-verification" content="iDzKotBsbsBLGl-H54MCP12xof1OyGMonS7u95FbIvY">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="icon" href="../icon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="../icon-192.png" type="image/png" sizes="192x192">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notif Guardian",
+  "operatingSystem": "Android (Xiaomi HyperOS)",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "阻止小米 HyperOS 冻结 Google Play 服务和即时通讯应用，让 WhatsApp、Telegram 和 Gmail 的通知实时到达。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://mahir-hs.github.io/notif-guardian/",
+  "downloadUrl": "https://github.com/mahir-hs/notif-guardian/releases/latest",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "为什么通知只有打开应用才会出现？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "息屏时 HyperOS 会冻结 Google Play 服务。几乎所有应用的推送通知都经由它传递，所以要等到你解锁才会出现。把某个应用的省电策略设为“无限制”只对该应用有帮助，而 HyperOS 并没有为 Google Play 服务提供这样的设置。Notif Guardian 填补的正是这个空白。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "需要 Root 吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不需要，也不需要电脑：两个应用都直接装在手机上，重启后一切照常工作。只有当你的手机拒绝安装 Helper 时，才需要用一次电脑。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "支持哪些手机？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "运行 HyperOS 的小米、Redmi 和 POCO 手机。已在运行 HyperOS 3 的 Redmi Note 14 Pro+ 上测试。较旧的 MIUI 版本可能只能部分生效。如果有问题，请在应用中点按 Share diagnostics，并在 GitHub 上提交 issue。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会耗电吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "几乎不会。Guardian 每分钟检查一次你的应用，并在 HyperOS 修改名单时作出反应。保持 Google Play 服务唤醒，本来就是所有非小米 Android 手机的默认行为。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Telegram 有时还是会晚一点，为什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "如果你正在使用 Telegram 桌面版或网页版，Telegram 的服务器会故意不向手机推送。推送一到，手机就会立刻显示。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "它会读取我的消息吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不会。它只记录是哪个应用在何时发出了通知，从不记录文字内容。除非你自己分享诊断文件，否则任何数据都不会离开你的手机。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="bar" aria-label="网站">
+      <a class="brand" href="../"><img src="../icon.svg" alt="">Notif Guardian</a>
+      <div class="bar-end">
+        <a class="gh" href="https://github.com/mahir-hs/notif-guardian">GitHub 源代码</a>
+        <div class="lang">
+          <select id="lang-select" aria-label="语言">
+            <option value="en">English</option>
+            <option value="bn">বাংলা</option>
+            <option value="hi">हिन्दी</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="zh" selected>简体中文</option>
+            <option value="es">Español</option>
+            <option value="ru">Русский</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+    <h1>即使息屏，消息也准时到达。</h1>
+    <p class="lede">在小米、Redmi 和 POCO 手机上，WhatsApp、Telegram 和 Gmail 的通知常常要等你解锁或打开应用才会出现。Notif Guardian 找出原因，并阻止 HyperOS 拦住它们。</p>
+    <div class="downloads">
+      <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">下载 Notif Guardian</a>
+      <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">下载 Guardian Helper</a>
+    </div>
+    <p class="meta" id="release-meta">免费开源。无需 Root，无需电脑。适用于 HyperOS 的 Android APK。</p>
+  </div>
+</header>
+
+<section class="path-section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">为什么你的消息会延迟</h2>
+    <p class="intro">几乎所有应用的通知都经由同一条连接送达手机，这条连接由 Google Play 服务保持畅通。来看看一条 WhatsApp 消息是如何到达你手中的。</p>
+    <div class="toggle" role="group" aria-label="显示送达路径">
+      <button type="button" data-set="hyperos" aria-pressed="true">HyperOS，息屏</button>
+      <button type="button" data-set="guardian" aria-pressed="false">使用 Notif Guardian</button>
+    </div>
+    <ol class="path" id="path" data-mode="hyperos">
+      <li class="hop"><strong>朋友发来消息</strong><span>WhatsApp 的服务器把它交给 Google。</span><b class="state">已发送</b></li>
+      <li class="hop"><strong>Google 推送服务</strong><span>立刻把它发到你的手机。</span><b class="state">已送达</b></li>
+      <li class="hop gms"><strong>Google Play 服务</strong><span>在手机上接收消息并唤醒应用。</span><b class="state" data-hyperos="被 HyperOS 冻结" data-guardian="保持唤醒">被 HyperOS 冻结</b></li>
+      <li class="hop after"><strong>WhatsApp</strong><span>取回消息并显示。</span><b class="state" data-hyperos="从未被唤醒" data-guardian="显示消息">从未被唤醒</b></li>
+      <li class="hop after"><strong>你的锁屏界面</strong><span>你看到通知。</span><b class="state" data-hyperos="解锁后才出现" data-guardian="即时出现">解锁后才出现</b></li>
+    </ol>
+    <p class="verdict" id="verdict" data-hyperos="每当屏幕熄灭，HyperOS 就会冻结 Google Play 服务，而且没有任何电池设置可以让你阻止它。" data-guardian="Notif Guardian 让 Google Play 服务一直留在 HyperOS 的豁免名单中，一旦 HyperOS 将其移除，会在几毫秒内重新加回。">每当屏幕熄灭，HyperOS 就会冻结 Google Play 服务，而且没有任何电池设置可以让你阻止它。</p>
+  </div>
+</section>
+
+<main>
+  <section class="block" aria-labelledby="what">
+    <div class="wrap">
+      <h2 id="what">它能做什么</h2>
+      <p class="intro">选出你在意通知的应用。Guardian 会盯着它们，修复 HyperOS 弄坏的部分。</p>
+      <ul class="features">
+        <li><strong>让 Google Play 服务保持唤醒</strong><span>这是 HyperOS 设置做不到的唯一修复，也是所有应用都依赖的一项。</span></li>
+        <li><strong>检查每个应用的送达路径</strong><span>是否在运行、自启动、省电策略、后台活动、是否被冻结，一目了然。</span></li>
+        <li><strong>一键直达正确的设置</strong><span>针对每个问题直接打开对应的 HyperOS 页面，不用你自己翻找。</span></li>
+        <li><strong>应用被杀死时提醒你</strong><span>并一键让它恢复，不错过任何消息。</span></li>
+        <li><strong>测量延迟的通知</strong><span>显示每条通知晚到了多久，让你亲眼看到效果。</span></li>
+        <li><strong>从设计上保护隐私</strong><span>只读取通知何时到达，从不读取内容。仅在检查更新时联网。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="shots">
+    <div class="wrap">
+      <h2 id="shots">真机截图</h2>
+      <p class="intro">你保护的每个应用都有五项检查，红色项旁边会有一个修复按钮。</p>
+      <ul class="shots">
+        <li><figure><img src="../screenshots/home.png" width="1220" height="2552" loading="lazy" alt="Notif Guardian 主屏幕：7 个应用中有 6 个能联系到你，无法联系的那个应用旁有“修复”按钮"><figcaption><b>状态一目了然</b>有多少应用能联系到你，以及出问题的应用对应的按钮。</figcaption></figure></li>
+        <li><figure><img src="../screenshots/helper.png" width="1220" height="2552" loading="lazy" alt="“Keep Google Play services awake”检查清单，所有行均为绿色"><figcaption><b>让 Google Play 服务保持唤醒</b>Guardian Helper 的设置清单，全部变绿。</figcaption></figure></li>
+        <li><figure><img src="../screenshots/apps.png" width="1220" height="2552" loading="lazy" alt="受保护的应用列表，每个应用有五项健康检查，以及延迟通知区域"><figcaption><b>每个应用的健康状况</b>每个应用五项检查，以及延迟通知记录。</figcaption></figure></li>
+      </ul>
+      <p class="shots-note">截图来自运行 HyperOS 3 的 Redmi Note 14 Pro+。应用界面目前为英文。</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="install">
+    <div class="wrap">
+      <h2 id="install">安装</h2>
+      <p class="intro">大约十分钟，只需一次，全部在手机上完成，不需要电脑。</p>
+      <ol class="steps">
+        <li>
+          <h3>安装 Notif Guardian</h3>
+          <p>下载上方的 <code>NotifGuardian</code>，在手机上打开，并允许通过浏览器或文件管理器安装应用。打开应用，把 <b>Guardian is set up</b> 中的每一行都设为绿色，然后点按 <b>Add apps</b>。</p>
+          <p>如果 Android 因为应用“来自未知来源”而阻止通知使用权（<b>Notification access</b>）：打开该应用的应用信息（<b>App info</b>），点右上角的 <b>&#8942;</b>，选择 <b>Allow restricted settings</b>（允许受限制的设置），然后重试。对任何通过下载文件安装的应用，Android 都会询问这一次。</p>
+        </li>
+        <li>
+          <h3>安装 Guardian Helper</h3>
+          <p>下载上方的 <code>GuardianHelper</code>，用同样方式安装。它没有图标：它在后台为 Notif Guardian 工作。HyperOS 可能会提示它是为旧版 Android 构建的，这是正常的，因为 Helper 只有这样才能完成工作。</p>
+          <p>如果手机完全拒绝安装，请改用电脑安装：在开发者选项中打开 <b>USB debugging</b>（USB 调试）和 <b>Install via USB</b>（USB 安装），连接手机，然后运行</p>
+          <pre dir="ltr">adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
+        </li>
+        <li>
+          <h3>在应用中完成设置</h3>
+          <p>打开 <b>Keep Google Play services awake</b>，把每一行都设为绿色：</p>
+          <ul>
+            <li>为 Helper 允许 <b>Modify system settings</b>（修改系统设置）</li>
+            <li>打开 Helper 的 <b>Autostart</b>（自启动）</li>
+            <li>把 Helper 的 <b>Battery saver</b>（省电策略）设为 <b>No restrictions</b>（无限制）</li>
+            <li>点按 <b>Open helper</b>，确认 Android 的审核提示，然后点 <b>Test helper</b></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">支持开发</h2>
+      <p class="intro" id="support-message">Notif Guardian 免费且开源。如果它修好了你的通知，一笔小额捐赠能帮助项目继续下去。</p>
+      <div id="donate-groups"></div>
+      <p id="donate-elsewhere" class="elsewhere">在 <a href="https://github.com/mahir-hs/notif-guardian">GitHub</a> 上给项目点星，能让更多人找到它。</p>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq">
+    <div class="wrap">
+      <h2 id="faq">常见问题</h2>
+      <details><summary>为什么通知只有打开应用才会出现？</summary><p>息屏时 HyperOS 会冻结 Google Play 服务。几乎所有应用的推送通知都经由它传递，所以要等到你解锁才会出现。把某个应用的省电策略设为“无限制”只对该应用有帮助，而 HyperOS 并没有为 Google Play 服务提供这样的设置。Notif Guardian 填补的正是这个空白。</p></details>
+      <details><summary>需要 Root 吗？</summary><p>不需要，也不需要电脑：两个应用都直接装在手机上，重启后一切照常工作。只有当你的手机拒绝安装 Helper 时，才需要用一次电脑。</p></details>
+      <details><summary>支持哪些手机？</summary><p>运行 HyperOS 的小米、Redmi 和 POCO 手机。已在运行 HyperOS 3 的 Redmi Note 14 Pro+ 上测试。较旧的 MIUI 版本可能只能部分生效。如果有问题，请在应用中点按 <b>Share diagnostics</b>，并在 GitHub 上提交 issue。</p></details>
+      <details><summary>会耗电吗？</summary><p>几乎不会。Guardian 每分钟检查一次你的应用，并在 HyperOS 修改名单时作出反应。保持 Google Play 服务唤醒，本来就是所有非小米 Android 手机的默认行为。</p></details>
+      <details><summary>Telegram 有时还是会晚一点，为什么？</summary><p>如果你正在使用 Telegram 桌面版或网页版，Telegram 的服务器会故意不向手机推送。推送一到，手机就会立刻显示。</p></details>
+      <details><summary>它会读取我的消息吗？</summary><p>不会。它只记录是哪个应用在何时发出了通知，从不记录文字内容。除非你自己分享诊断文件，否则任何数据都不会离开你的手机。</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Notif Guardian 是采用 MIT 许可证的自由软件。</span>
+    <span><a href="#support">捐赠</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian">源代码</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">反馈问题</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">所有版本</a></span>
+  </div>
+</footer>
+
+<script>
+window.PAGE = {"lang": "zh", "base": "../", "langs": {"en": "../", "bn": "../bn/", "hi": "../hi/", "id": "../id/", "zh": "../zh/", "es": "../es/", "ru": "../ru/"}};
+window.T = {"donate_in": "在{name}", "open": "打开", "copy": "复制", "copied": "已复制", "release_meta": "版本 {version}，发布于 {date}。免费开源。无需 Root，无需电脑。", "dyn": {"Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian 免费且开源。如果它修好了你的通知，一笔小额捐赠能帮助项目继续下去。", "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "不在孟加拉国？国际捐赠即将开通。在此之前，在 GitHub 上给项目点星能让更多人找到它。", "Bangladesh": "孟加拉国", "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash 和 Nagad 是孟加拉国使用的移动钱包。", "Personal account: use Send Money": "个人账户：请使用 Send Money（转账）"}};
+</script>
+<script src="../app.js"></script>
+</body>
+</html>

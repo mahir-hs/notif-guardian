@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notif Guardian: atasi notifikasi telat di Xiaomi, Redmi, dan POCO (HyperOS)</title>
+<meta name="description" content="Notifikasi WhatsApp, Telegram, atau Gmail baru masuk saat Anda membuka aplikasinya di ponsel Xiaomi, Redmi, atau POCO? Notif Guardian mencari penyebabnya dan mencegah HyperOS membekukannya. Gratis, open source, tanpa root.">
+<link rel="canonical" href="https://mahir-hs.github.io/notif-guardian/id/">
+<link rel="alternate" hreflang="en" href="https://mahir-hs.github.io/notif-guardian/">
+<link rel="alternate" hreflang="bn" href="https://mahir-hs.github.io/notif-guardian/bn/">
+<link rel="alternate" hreflang="hi" href="https://mahir-hs.github.io/notif-guardian/hi/">
+<link rel="alternate" hreflang="id" href="https://mahir-hs.github.io/notif-guardian/id/">
+<link rel="alternate" hreflang="zh" href="https://mahir-hs.github.io/notif-guardian/zh/">
+<link rel="alternate" hreflang="es" href="https://mahir-hs.github.io/notif-guardian/es/">
+<link rel="alternate" hreflang="ru" href="https://mahir-hs.github.io/notif-guardian/ru/">
+<link rel="alternate" hreflang="x-default" href="https://mahir-hs.github.io/notif-guardian/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:title" content="Notif Guardian: notifikasi tepat waktu di Xiaomi HyperOS">
+<meta property="og:description" content="HyperOS membekukan Google Play services saat layar mati, sehingga pesan menunggu sampai Anda membuka kunci. Notif Guardian menghentikannya. Gratis, open source, tanpa root.">
+<meta property="og:url" content="https://mahir-hs.github.io/notif-guardian/id/">
+<meta property="og:image" content="https://mahir-hs.github.io/notif-guardian/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Layar utama Notif Guardian di ponsel Xiaomi, di samping judul: Pesan tepat waktu, bahkan saat layar mati.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14213D">
+<meta name="google-site-verification" content="iDzKotBsbsBLGl-H54MCP12xof1OyGMonS7u95FbIvY">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="icon" href="../icon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="../icon-192.png" type="image/png" sizes="192x192">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notif Guardian",
+  "operatingSystem": "Android (Xiaomi HyperOS)",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Mencegah Xiaomi HyperOS membekukan Google Play services dan aplikasi pesan agar notifikasi WhatsApp, Telegram, dan Gmail masuk secara real time.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://mahir-hs.github.io/notif-guardian/",
+  "downloadUrl": "https://github.com/mahir-hs/notif-guardian/releases/latest",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mengapa notifikasi baru masuk saat saya membuka aplikasinya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HyperOS membekukan Google Play services saat layar mati. Notifikasi push hampir semua aplikasi melewatinya, sehingga menunggu sampai Anda membuka kunci. Mengatur penghemat baterai sebuah aplikasi ke \"No restrictions\" membantu aplikasi itu, tetapi HyperOS tidak menyediakan pengaturan seperti itu untuk Google Play services. Celah itulah yang diisi Notif Guardian."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah perlu root?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak, dan tidak perlu komputer juga: kedua aplikasi dipasang di ponsel, dan semuanya tetap berfungsi setelah restart. Komputer hanya diperlukan, sekali saja, jika ponsel Anda menolak memasang helper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Di ponsel apa saja aplikasi ini bekerja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ponsel Xiaomi, Redmi, dan POCO dengan HyperOS. Diuji di Redmi Note 14 Pro+ dengan HyperOS 3. MIUI versi lama mungkin hanya berfungsi sebagian. Jika ada yang tidak berfungsi, ketuk Share diagnostics di aplikasi dan buka issue di GitHub."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah menguras baterai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nyaris tidak. Guardian memeriksa aplikasi Anda sekali per menit dan bereaksi saat HyperOS mengubah daftarnya. Menjaga Google Play services tetap aktif memang sudah dilakukan setiap ponsel Android non-Xiaomi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Telegram kadang masih sedikit telat. Mengapa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jika Anda aktif di Telegram Desktop atau Web, server Telegram sengaja menahan push ke ponsel Anda. Ponsel menampilkannya begitu push itu tiba."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah aplikasi ini membaca pesan saya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak. Aplikasi hanya mencatat aplikasi mana yang memunculkan notifikasi dan kapan, tidak pernah isinya. Tidak ada yang keluar dari ponsel Anda kecuali Anda sendiri membagikan file diagnostik."
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="bar" aria-label="Situs">
+      <a class="brand" href="../"><img src="../icon.svg" alt="">Notif Guardian</a>
+      <div class="bar-end">
+        <a class="gh" href="https://github.com/mahir-hs/notif-guardian">Kode sumber di GitHub</a>
+        <div class="lang">
+          <select id="lang-select" aria-label="Bahasa">
+            <option value="en">English</option>
+            <option value="bn">বাংলা</option>
+            <option value="hi">हिन्दी</option>
+            <option value="id" selected>Bahasa Indonesia</option>
+            <option value="zh">简体中文</option>
+            <option value="es">Español</option>
+            <option value="ru">Русский</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+    <h1>Pesan tepat waktu, bahkan saat layar mati.</h1>
+    <p class="lede">Di ponsel Xiaomi, Redmi, dan POCO, notifikasi WhatsApp, Telegram, dan Gmail sering baru muncul saat Anda membuka kunci atau membuka aplikasinya. Notif Guardian mencari tahu penyebabnya dan mencegah HyperOS menahannya.</p>
+    <div class="downloads">
+      <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Unduh Notif Guardian</a>
+      <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Unduh Guardian Helper</a>
+    </div>
+    <p class="meta" id="release-meta">Gratis dan open source. Tanpa root, tanpa komputer. APK Android untuk HyperOS.</p>
+  </div>
+</header>
+
+<section class="path-section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">Mengapa pesan Anda telat</h2>
+    <p class="intro">Hampir semua notifikasi aplikasi sampai ke ponsel Anda lewat satu koneksi yang dijaga tetap terbuka oleh Google Play services. Ikuti perjalanan satu pesan WhatsApp menuju Anda.</p>
+    <div class="toggle" role="group" aria-label="Tampilkan jalur pengiriman">
+      <button type="button" data-set="hyperos" aria-pressed="true">HyperOS, layar mati</button>
+      <button type="button" data-set="guardian" aria-pressed="false">Dengan Notif Guardian</button>
+    </div>
+    <ol class="path" id="path" data-mode="hyperos">
+      <li class="hop"><strong>Teman Anda mengirim pesan</strong><span>Server WhatsApp meneruskannya ke Google.</span><b class="state">Terkirim</b></li>
+      <li class="hop"><strong>Layanan push Google</strong><span>Langsung mengirimnya ke ponsel Anda.</span><b class="state">Sampai</b></li>
+      <li class="hop gms"><strong>Google Play services</strong><span>Menerimanya di ponsel dan membangunkan aplikasi.</span><b class="state" data-hyperos="Dibekukan HyperOS" data-guardian="Aktif">Dibekukan HyperOS</b></li>
+      <li class="hop after"><strong>WhatsApp</strong><span>Mengambil pesan dan menampilkannya.</span><b class="state" data-hyperos="Tidak pernah dibangunkan" data-guardian="Menampilkannya">Tidak pernah dibangunkan</b></li>
+      <li class="hop after"><strong>Layar kunci Anda</strong><span>Anda melihat notifikasinya.</span><b class="state" data-hyperos="Hanya saat Anda membuka kunci" data-guardian="Seketika">Hanya saat Anda membuka kunci</b></li>
+    </ol>
+    <p class="verdict" id="verdict" data-hyperos="HyperOS membekukan Google Play services setiap kali layar mati, dan tidak ada pengaturan baterai yang bisa Anda ubah untuk mencegahnya." data-guardian="Notif Guardian menjaga Google Play services tetap ada di daftar pengecualian HyperOS, dan mengembalikannya dalam hitungan milidetik setiap kali HyperOS menghapusnya.">HyperOS membekukan Google Play services setiap kali layar mati, dan tidak ada pengaturan baterai yang bisa Anda ubah untuk mencegahnya.</p>
+  </div>
+</section>
+
+<main>
+  <section class="block" aria-labelledby="what">
+    <div class="wrap">
+      <h2 id="what">Apa yang dilakukannya</h2>
+      <p class="intro">Pilih aplikasi yang notifikasinya penting bagi Anda. Guardian mengawasinya dan memperbaiki apa yang dirusak HyperOS.</p>
+      <ul class="features">
+        <li><strong>Menjaga Google Play services tetap aktif</strong><span>Satu-satunya perbaikan yang tidak bisa dilakukan lewat pengaturan HyperOS, dan yang menjadi sandaran semua aplikasi.</span></li>
+        <li><strong>Memeriksa jalur pengiriman tiap aplikasi</strong><span>Berjalan, autostart, penghemat baterai, aktivitas latar belakang, beku atau tidak, sekali lihat.</span></li>
+        <li><strong>Satu ketukan ke pengaturan yang tepat</strong><span>Membuka layar HyperOS yang tepat untuk setiap masalah, tanpa Anda perlu mencarinya.</span></li>
+        <li><strong>Memberi tahu saat aplikasi dimatikan</strong><span>Dan menghidupkannya kembali dengan satu ketukan, agar tidak ada yang terlewat.</span></li>
+        <li><strong>Mengukur notifikasi yang telat</strong><span>Menunjukkan seberapa telat setiap notifikasi, sehingga Anda bisa melihat hasilnya.</span></li>
+        <li><strong>Privasi sejak awal</strong><span>Membaca kapan notifikasi masuk, bukan isinya. Hanya online untuk memeriksa pembaruan.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="shots">
+    <div class="wrap">
+      <h2 id="shots">Lihat di ponsel sungguhan</h2>
+      <p class="intro">Setiap aplikasi yang Anda lindungi mendapat lima pemeriksaan, dan yang merah disertai tombol untuk memperbaikinya.</p>
+      <ul class="shots">
+        <li><figure><img src="../screenshots/home.png" width="1220" height="2552" loading="lazy" alt="Layar utama Notif Guardian: 6 dari 7 aplikasi bisa menjangkau Anda, dengan tombol Fix untuk satu aplikasi yang tidak bisa"><figcaption><b>Status sekali lihat</b>Berapa aplikasi yang bisa menjangkau Anda, dan tombol untuk yang bermasalah.</figcaption></figure></li>
+        <li><figure><img src="../screenshots/helper.png" width="1220" height="2552" loading="lazy" alt="Daftar periksa Keep Google Play services awake dengan semua baris berwarna hijau"><figcaption><b>Jaga Google Play services tetap aktif</b>Daftar periksa pengaturan Guardian Helper, semuanya hijau.</figcaption></figure></li>
+        <li><figure><img src="../screenshots/apps.png" width="1220" height="2552" loading="lazy" alt="Daftar aplikasi yang dilindungi dengan lima pemeriksaan kesehatan masing-masing, dan bagian notifikasi telat"><figcaption><b>Kesehatan tiap aplikasi</b>Lima pemeriksaan per aplikasi, dan catatan notifikasi yang telat.</figcaption></figure></li>
+      </ul>
+      <p class="shots-note">Tangkapan layar dari Redmi Note 14 Pro+ dengan HyperOS 3. Aplikasinya sendiri berbahasa Inggris.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="install">
+    <div class="wrap">
+      <h2 id="install">Pasang</h2>
+      <p class="intro">Sekitar sepuluh menit, sekali saja, semuanya di ponsel. Tidak perlu komputer.</p>
+      <ol class="steps">
+        <li>
+          <h3>Pasang Notif Guardian</h3>
+          <p>Unduh <code>NotifGuardian</code> di atas, buka di ponsel, dan izinkan pemasangan dari browser atau pengelola file Anda. Buka aplikasinya dan hijaukan setiap baris di <b>Guardian is set up</b>, lalu ketuk <b>Add apps</b>.</p>
+          <p>Jika Android memblokir akses notifikasi (<b>Notification access</b>) karena aplikasi "berasal dari sumber tidak dikenal": buka info aplikasi (<b>App info</b>), ketuk <b>&#8942;</b> di kanan atas, pilih <b>Allow restricted settings</b>, lalu coba lagi. Android menanyakan ini sekali untuk setiap aplikasi yang dipasang dari file unduhan.</p>
+        </li>
+        <li>
+          <h3>Pasang Guardian Helper</h3>
+          <p>Unduh <code>GuardianHelper</code> di atas dan pasang dengan cara yang sama. Aplikasi ini tidak punya ikon: ia bekerja di latar belakang untuk Notif Guardian. HyperOS mungkin memperingatkan bahwa aplikasi ini dibuat untuk Android versi lama; itu memang disengaja, karena hanya dengan cara itu helper bisa menjalankan tugasnya.</p>
+          <p>Jika ponsel Anda menolak memasangnya sama sekali, pasang dari komputer: aktifkan <b>USB debugging</b> dan <b>Install via USB</b> di opsi pengembang, sambungkan ponsel, lalu jalankan</p>
+          <pre dir="ltr">adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
+        </li>
+        <li>
+          <h3>Selesaikan di aplikasi</h3>
+          <p>Buka <b>Keep Google Play services awake</b> dan hijaukan setiap baris:</p>
+          <ul>
+            <li>Izinkan <b>Modify system settings</b> (ubah pengaturan sistem) untuk helper</li>
+            <li>Aktifkan <b>Autostart</b> milik helper</li>
+            <li>Atur <b>Battery saver</b> (penghemat baterai) milik helper ke <b>No restrictions</b> (tanpa pembatasan)</li>
+            <li>Ketuk <b>Open helper</b>, konfirmasi tinjauan Android, lalu <b>Test helper</b></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">Dukung pengembangan</h2>
+      <p class="intro" id="support-message">Notif Guardian gratis dan open source. Jika aplikasi ini memperbaiki notifikasi Anda, donasi kecil membantu proyek ini terus berjalan.</p>
+      <div id="donate-groups"></div>
+      <p id="donate-elsewhere" class="elsewhere">Memberi bintang pada proyek ini di <a href="https://github.com/mahir-hs/notif-guardian">GitHub</a> membantu lebih banyak orang menemukannya.</p>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq">
+    <div class="wrap">
+      <h2 id="faq">Pertanyaan</h2>
+      <details><summary>Mengapa notifikasi baru masuk saat saya membuka aplikasinya?</summary><p>HyperOS membekukan Google Play services saat layar mati. Notifikasi push hampir semua aplikasi melewatinya, sehingga menunggu sampai Anda membuka kunci. Mengatur penghemat baterai sebuah aplikasi ke "No restrictions" membantu aplikasi itu, tetapi HyperOS tidak menyediakan pengaturan seperti itu untuk Google Play services. Celah itulah yang diisi Notif Guardian.</p></details>
+      <details><summary>Apakah perlu root?</summary><p>Tidak, dan tidak perlu komputer juga: kedua aplikasi dipasang di ponsel, dan semuanya tetap berfungsi setelah restart. Komputer hanya diperlukan, sekali saja, jika ponsel Anda menolak memasang helper.</p></details>
+      <details><summary>Di ponsel apa saja aplikasi ini bekerja?</summary><p>Ponsel Xiaomi, Redmi, dan POCO dengan HyperOS. Diuji di Redmi Note 14 Pro+ dengan HyperOS 3. MIUI versi lama mungkin hanya berfungsi sebagian. Jika ada yang tidak berfungsi, ketuk <b>Share diagnostics</b> di aplikasi dan buka issue di GitHub.</p></details>
+      <details><summary>Apakah menguras baterai?</summary><p>Nyaris tidak. Guardian memeriksa aplikasi Anda sekali per menit dan bereaksi saat HyperOS mengubah daftarnya. Menjaga Google Play services tetap aktif memang sudah dilakukan setiap ponsel Android non-Xiaomi.</p></details>
+      <details><summary>Telegram kadang masih sedikit telat. Mengapa?</summary><p>Jika Anda aktif di Telegram Desktop atau Web, server Telegram sengaja menahan push ke ponsel Anda. Ponsel menampilkannya begitu push itu tiba.</p></details>
+      <details><summary>Apakah aplikasi ini membaca pesan saya?</summary><p>Tidak. Aplikasi hanya mencatat aplikasi mana yang memunculkan notifikasi dan kapan, tidak pernah isinya. Tidak ada yang keluar dari ponsel Anda kecuali Anda sendiri membagikan file diagnostik.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Notif Guardian adalah perangkat lunak bebas berlisensi MIT.</span>
+    <span><a href="#support">Donasi</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian">Kode sumber</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">Laporkan masalah</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">Semua rilis</a></span>
+  </div>
+</footer>
+
+<script>
+window.PAGE = {"lang": "id", "base": "../", "langs": {"en": "../", "bn": "../bn/", "hi": "../hi/", "id": "../id/", "zh": "../zh/", "es": "../es/", "ru": "../ru/"}};
+window.T = {"donate_in": "Di {name}", "open": "Buka", "copy": "Salin", "copied": "Tersalin", "release_meta": "Versi {version}, dirilis {date}. Gratis dan open source. Tanpa root, tanpa komputer.", "dyn": {"Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian gratis dan open source. Jika aplikasi ini memperbaiki notifikasi Anda, donasi kecil membantu proyek ini terus berjalan.", "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "Di luar Bangladesh? Donasi internasional segera hadir. Sampai saat itu, memberi bintang pada proyek ini di GitHub membantu lebih banyak orang menemukannya.", "Bangladesh": "Bangladesh", "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash dan Nagad adalah dompet seluler yang dipakai di Bangladesh.", "Personal account: use Send Money": "Akun pribadi: gunakan Send Money"}};
+</script>
+<script src="../app.js"></script>
+</body>
+</html>

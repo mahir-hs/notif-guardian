@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title|attr}}</title>
+<meta name="description" content="{{meta_desc|attr}}">
+<link rel="canonical" href="{{url}}">
+{{hreflang}}
+<meta property="og:type" content="website">
+<meta property="og:locale" content="{{og_locale}}">
+<meta property="og:title" content="{{og_title|attr}}">
+<meta property="og:description" content="{{og_desc|attr}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="https://mahir-hs.github.io/notif-guardian/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{og_alt|attr}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14213D">
+<meta name="google-site-verification" content="iDzKotBsbsBLGl-H54MCP12xof1OyGMonS7u95FbIvY">
+<link rel="icon" href="{{base}}icon.svg" type="image/svg+xml">
+<link rel="icon" href="{{base}}icon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="{{base}}icon-192.png" type="image/png" sizes="192x192">
+<link rel="shortcut icon" href="{{base}}favicon.ico">
+<link rel="apple-touch-icon" href="{{base}}apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{fonts}}" rel="stylesheet">
+{{jsonld}}
+<link rel="stylesheet" href="{{base}}style.css">
+{{redirect}}
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="bar" aria-label="{{nav_aria|attr}}">
+      <a class="brand" href="{{home}}"><img src="{{base}}icon.svg" alt="">Notif Guardian</a>
+      <div class="bar-end">
+        <a class="gh" href="https://github.com/mahir-hs/notif-guardian">{{nav_gh}}</a>
+        <div class="lang">
+          <select id="lang-select" aria-label="{{lang_aria|attr}}">
+{{options}}
+          </select>
+        </div>
+      </div>
+    </nav>
+    <h1>{{h1}}</h1>
+    <p class="lede">{{lede}}</p>
+    <div class="downloads">
+      <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">{{dl_guardian}}</a>
+      <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">{{dl_helper}}</a>
+    </div>
+    <p class="meta" id="release-meta">{{release_meta_static}}</p>
+  </div>
+</header>
+
+<section class="path-section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">{{why_h}}</h2>
+    <p class="intro">{{why_intro}}</p>
+    <div class="toggle" role="group" aria-label="{{toggle_aria|attr}}">
+      <button type="button" data-set="hyperos" aria-pressed="true">{{tg_hyperos}}</button>
+      <button type="button" data-set="guardian" aria-pressed="false">{{tg_guardian}}</button>
+    </div>
+    <ol class="path" id="path" data-mode="hyperos">
+      <li class="hop"><strong>{{hop1_t}}</strong><span>{{hop1_d}}</span><b class="state">{{hop1_s}}</b></li>
+      <li class="hop"><strong>{{hop2_t}}</strong><span>{{hop2_d}}</span><b class="state">{{hop2_s}}</b></li>
+      <li class="hop gms"><strong>{{hop3_t}}</strong><span>{{hop3_d}}</span><b class="state" data-hyperos="{{hop3_h|attr}}" data-guardian="{{hop3_g|attr}}">{{hop3_h}}</b></li>
+      <li class="hop after"><strong>{{hop4_t}}</strong><span>{{hop4_d}}</span><b class="state" data-hyperos="{{hop4_h|attr}}" data-guardian="{{hop4_g|attr}}">{{hop4_h}}</b></li>
+      <li class="hop after"><strong>{{hop5_t}}</strong><span>{{hop5_d}}</span><b class="state" data-hyperos="{{hop5_h|attr}}" data-guardian="{{hop5_g|attr}}">{{hop5_h}}</b></li>
+    </ol>
+    <p class="verdict" id="verdict" data-hyperos="{{verdict_h|attr}}" data-guardian="{{verdict_g|attr}}">{{verdict_h}}</p>
+  </div>
+</section>
+
+<main>
+  <section class="block" aria-labelledby="what">
+    <div class="wrap">
+      <h2 id="what">{{what_h}}</h2>
+      <p class="intro">{{what_intro}}</p>
+      <ul class="features">
+        <li><strong>{{f1_t}}</strong><span>{{f1_d}}</span></li>
+        <li><strong>{{f2_t}}</strong><span>{{f2_d}}</span></li>
+        <li><strong>{{f3_t}}</strong><span>{{f3_d}}</span></li>
+        <li><strong>{{f4_t}}</strong><span>{{f4_d}}</span></li>
+        <li><strong>{{f5_t}}</strong><span>{{f5_d}}</span></li>
+        <li><strong>{{f6_t}}</strong><span>{{f6_d}}</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="shots">
+    <div class="wrap">
+      <h2 id="shots">{{shots_h}}</h2>
+      <p class="intro">{{shots_intro}}</p>
+      <ul class="shots">
+        <li><figure><img src="{{base}}screenshots/home.png" width="1220" height="2552" loading="lazy" alt="{{shot1_alt|attr}}"><figcaption><b>{{shot1_t}}</b>{{shot1_d}}</figcaption></figure></li>
+        <li><figure><img src="{{base}}screenshots/helper.png" width="1220" height="2552" loading="lazy" alt="{{shot2_alt|attr}}"><figcaption><b>{{shot2_t}}</b>{{shot2_d}}</figcaption></figure></li>
+        <li><figure><img src="{{base}}screenshots/apps.png" width="1220" height="2552" loading="lazy" alt="{{shot3_alt|attr}}"><figcaption><b>{{shot3_t}}</b>{{shot3_d}}</figcaption></figure></li>
+      </ul>
+      <p class="shots-note">{{shots_note}}</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="install">
+    <div class="wrap">
+      <h2 id="install">{{install_h}}</h2>
+      <p class="intro">{{install_intro}}</p>
+      <ol class="steps">
+        <li>
+          <h3>{{s1_t}}</h3>
+          <p>{{s1_p1}}</p>
+          <p>{{s1_p2}}</p>
+        </li>
+        <li>
+          <h3>{{s2_t}}</h3>
+          <p>{{s2_p1}}</p>
+          <p>{{s2_p2}}</p>
+          <pre dir="ltr">adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
+        </li>
+        <li>
+          <h3>{{s3_t}}</h3>
+          <p>{{s3_p1}}</p>
+          <ul>
+            <li>{{s3_l1}}</li>
+            <li>{{s3_l2}}</li>
+            <li>{{s3_l3}}</li>
+            <li>{{s3_l4}}</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">{{support_h}}</h2>
+      <p class="intro" id="support-message">{{support_message}}</p>
+      <div id="donate-groups"></div>
+      <p id="donate-elsewhere" class="elsewhere">{{donate_elsewhere}}</p>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq">
+    <div class="wrap">
+      <h2 id="faq">{{faq_h}}</h2>
+      <details><summary>{{faq_q1}}</summary><p>{{faq_a1}}</p></details>
+      <details><summary>{{faq_q2}}</summary><p>{{faq_a2}}</p></details>
+      <details><summary>{{faq_q3}}</summary><p>{{faq_a3}}</p></details>
+      <details><summary>{{faq_q4}}</summary><p>{{faq_a4}}</p></details>
+      <details><summary>{{faq_q5}}</summary><p>{{faq_a5}}</p></details>
+      <details><summary>{{faq_q6}}</summary><p>{{faq_a6}}</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>{{footer_license}}</span>
+    <span><a href="#support">{{footer_donate}}</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian">{{footer_source}}</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">{{footer_report}}</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">{{footer_releases}}</a></span>
+  </div>
+</footer>
+
+<script>
+window.PAGE = {{page_json}};
+window.T = {{t_json}};
+</script>
+<script src="{{base}}app.js"></script>
+</body>
+</html>

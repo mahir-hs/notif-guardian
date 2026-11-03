@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notif Guardian: исправление запоздалых уведомлений на Xiaomi, Redmi и POCO (HyperOS)</title>
+<meta name="description" content="Уведомления WhatsApp, Telegram или Gmail приходят на Xiaomi, Redmi или POCO только после открытия приложения? Notif Guardian находит причину и не даёт HyperOS «замораживать» их. Бесплатно, с открытым кодом, без root.">
+<link rel="canonical" href="https://mahir-hs.github.io/notif-guardian/ru/">
+<link rel="alternate" hreflang="en" href="https://mahir-hs.github.io/notif-guardian/">
+<link rel="alternate" hreflang="bn" href="https://mahir-hs.github.io/notif-guardian/bn/">
+<link rel="alternate" hreflang="hi" href="https://mahir-hs.github.io/notif-guardian/hi/">
+<link rel="alternate" hreflang="id" href="https://mahir-hs.github.io/notif-guardian/id/">
+<link rel="alternate" hreflang="zh" href="https://mahir-hs.github.io/notif-guardian/zh/">
+<link rel="alternate" hreflang="es" href="https://mahir-hs.github.io/notif-guardian/es/">
+<link rel="alternate" hreflang="ru" href="https://mahir-hs.github.io/notif-guardian/ru/">
+<link rel="alternate" hreflang="x-default" href="https://mahir-hs.github.io/notif-guardian/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Notif Guardian: уведомления вовремя на Xiaomi HyperOS">
+<meta property="og:description" content="При выключенном экране HyperOS замораживает сервисы Google Play, и сообщения ждут, пока вы разблокируете телефон. Notif Guardian это останавливает. Бесплатно, с открытым кодом, без root.">
+<meta property="og:url" content="https://mahir-hs.github.io/notif-guardian/ru/">
+<meta property="og:image" content="https://mahir-hs.github.io/notif-guardian/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Главный экран Notif Guardian на телефоне Xiaomi рядом с заголовком: сообщения вовремя, даже при выключенном экране.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14213D">
+<meta name="google-site-verification" content="iDzKotBsbsBLGl-H54MCP12xof1OyGMonS7u95FbIvY">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="icon" href="../icon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="../icon-192.png" type="image/png" sizes="192x192">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notif Guardian",
+  "operatingSystem": "Android (Xiaomi HyperOS)",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Не даёт Xiaomi HyperOS замораживать сервисы Google Play и мессенджеры, чтобы уведомления WhatsApp, Telegram и Gmail приходили мгновенно.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://mahir-hs.github.io/notif-guardian/",
+  "downloadUrl": "https://github.com/mahir-hs/notif-guardian/releases/latest",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Почему уведомления приходят только когда я открываю приложение?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HyperOS замораживает сервисы Google Play, пока экран выключен. Push-уведомления почти всех приложений проходят через них, поэтому ждут, пока вы разблокируете телефон. Если выставить приложению экономию заряда «No restrictions», это поможет именно ему, но для сервисов Google Play в HyperOS такой настройки нет. Эту брешь и закрывает Notif Guardian."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужен ли root?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет, и компьютер тоже не нужен: оба приложения устанавливаются на телефон, и всё продолжает работать после перезагрузки. Компьютер понадобится один раз, только если телефон откажется устанавливать helper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "На каких телефонах это работает?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "На телефонах Xiaomi, Redmi и POCO с HyperOS. Проверено на Redmi Note 14 Pro+ с HyperOS 3. На старых версиях MIUI может работать частично. Если что-то не работает, нажмите в приложении Share diagnostics и создайте issue на GitHub."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Разряжает ли оно батарею?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Почти нет. Guardian раз в минуту проверяет ваши приложения и реагирует, когда HyperOS меняет свой список. Не давать уснуть сервисам Google Play — это то, что и так делает любой Android-телефон, кроме Xiaomi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Telegram иногда всё равно немного опаздывает. Почему?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Если вы активны в Telegram Desktop или Web, серверы Telegram намеренно задерживают push на телефон. Телефон показывает его в момент получения."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Читает ли оно мои сообщения?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Оно записывает только, какое приложение показало уведомление и когда, но никогда не текст. Ничего не покидает телефон, пока вы сами не отправите файл диагностики."
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="bar" aria-label="Сайт">
+      <a class="brand" href="../"><img src="../icon.svg" alt="">Notif Guardian</a>
+      <div class="bar-end">
+        <a class="gh" href="https://github.com/mahir-hs/notif-guardian">Исходный код на GitHub</a>
+        <div class="lang">
+          <select id="lang-select" aria-label="Язык">
+            <option value="en">English</option>
+            <option value="bn">বাংলা</option>
+            <option value="hi">हिन्दी</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="zh">简体中文</option>
+            <option value="es">Español</option>
+            <option value="ru" selected>Русский</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+    <h1>Сообщения вовремя, даже при выключенном экране.</h1>
+    <p class="lede">На телефонах Xiaomi, Redmi и POCO уведомления WhatsApp, Telegram и Gmail часто появляются только после разблокировки или открытия приложения. Notif Guardian выясняет причину и не даёт HyperOS их задерживать.</p>
+    <div class="downloads">
+      <a class="btn btn-primary" id="dl-guardian" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Скачать Notif Guardian</a>
+      <a class="btn btn-ghost" id="dl-helper" href="https://github.com/mahir-hs/notif-guardian/releases/latest">Скачать Guardian Helper</a>
+    </div>
+    <p class="meta" id="release-meta">Бесплатно и с открытым кодом. Без root и без компьютера. APK для Android на HyperOS.</p>
+  </div>
+</header>
+
+<section class="path-section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">Почему сообщения приходят с опозданием</h2>
+    <p class="intro">Уведомления почти всех приложений попадают на телефон через одно соединение, которое поддерживают сервисы Google Play. Проследите путь сообщения WhatsApp к вам.</p>
+    <div class="toggle" role="group" aria-label="Показать путь доставки">
+      <button type="button" data-set="hyperos" aria-pressed="true">HyperOS, экран выключен</button>
+      <button type="button" data-set="guardian" aria-pressed="false">С Notif Guardian</button>
+    </div>
+    <ol class="path" id="path" data-mode="hyperos">
+      <li class="hop"><strong>Друг отправляет сообщение</strong><span>Серверы WhatsApp передают его в Google.</span><b class="state">Отправлено</b></li>
+      <li class="hop"><strong>Push-сервис Google</strong><span>Сразу отправляет его на ваш телефон.</span><b class="state">Доставлено</b></li>
+      <li class="hop gms"><strong>Сервисы Google Play</strong><span>Принимают его на телефоне и будят приложение.</span><b class="state" data-hyperos="Заморожены HyperOS" data-guardian="Активны">Заморожены HyperOS</b></li>
+      <li class="hop after"><strong>WhatsApp</strong><span>Загружает сообщение и показывает его.</span><b class="state" data-hyperos="Не разбужен" data-guardian="Показывает">Не разбужен</b></li>
+      <li class="hop after"><strong>Ваш экран блокировки</strong><span>Вы видите уведомление.</span><b class="state" data-hyperos="Только после разблокировки" data-guardian="Мгновенно">Только после разблокировки</b></li>
+    </ol>
+    <p class="verdict" id="verdict" data-hyperos="HyperOS замораживает сервисы Google Play каждый раз, когда гаснет экран, и в настройках батареи нет ничего, что позволило бы это остановить." data-guardian="Notif Guardian держит сервисы Google Play в списке исключений HyperOS и возвращает их туда за миллисекунды, когда HyperOS их убирает.">HyperOS замораживает сервисы Google Play каждый раз, когда гаснет экран, и в настройках батареи нет ничего, что позволило бы это остановить.</p>
+  </div>
+</section>
+
+<main>
+  <section class="block" aria-labelledby="what">
+    <div class="wrap">
+      <h2 id="what">Что он делает</h2>
+      <p class="intro">Выберите приложения, уведомления которых для вас важны. Guardian следит за ними и исправляет то, что ломает HyperOS.</p>
+      <ul class="features">
+        <li><strong>Не даёт уснуть сервисам Google Play</strong><span>Единственное, что нельзя сделать в настройках HyperOS, и то, от чего зависят все приложения.</span></li>
+        <li><strong>Проверяет путь доставки каждого приложения</strong><span>Запущено ли, автозапуск, экономия заряда, фоновая активность, заморожено или нет — всё с первого взгляда.</span></li>
+        <li><strong>Одно нажатие до нужной настройки</strong><span>Открывает именно тот экран HyperOS, который нужен для решения проблемы, и вам не приходится искать его самим.</span></li>
+        <li><strong>Сообщает, когда приложение закрыли</strong><span>И возвращает его одним нажатием, чтобы вы ничего не пропустили.</span></li>
+        <li><strong>Измеряет запоздалые уведомления</strong><span>Показывает, насколько опоздало каждое, чтобы вы видели результат.</span></li>
+        <li><strong>Приватность по умолчанию</strong><span>Узнаёт, когда пришло уведомление, но никогда не читает его текст. В интернет выходит только для проверки обновлений.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="shots">
+    <div class="wrap">
+      <h2 id="shots">Как это выглядит на настоящем телефоне</h2>
+      <p class="intro">Каждое защищаемое приложение проходит пять проверок, а у красной есть кнопка для исправления.</p>
+      <ul class="shots">
+        <li><figure><img src="../screenshots/home.png" width="1220" height="2552" loading="lazy" alt="Главный экран Notif Guardian: 6 из 7 приложений могут до вас достучаться, для одного, которое не может, есть кнопка Fix"><figcaption><b>Состояние с первого взгляда</b>Сколько приложений могут до вас достучаться и кнопка для того, что сломано.</figcaption></figure></li>
+        <li><figure><img src="../screenshots/helper.png" width="1220" height="2552" loading="lazy" alt="Чек-лист Keep Google Play services awake, все строки зелёные"><figcaption><b>Не давайте уснуть сервисам Google Play</b>Чек-лист настройки Guardian Helper, всё зелёное.</figcaption></figure></li>
+        <li><figure><img src="../screenshots/apps.png" width="1220" height="2552" loading="lazy" alt="Список защищённых приложений с пятью проверками у каждого и раздел запоздалых уведомлений"><figcaption><b>Состояние каждого приложения</b>Пять проверок на приложение и журнал запоздалых уведомлений.</figcaption></figure></li>
+      </ul>
+      <p class="shots-note">Скриншоты с Redmi Note 14 Pro+ на HyperOS 3. Само приложение пока на английском.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="install">
+    <div class="wrap">
+      <h2 id="install">Установка</h2>
+      <p class="intro">Около десяти минут, один раз, всё на телефоне. Компьютер не нужен.</p>
+      <ol class="steps">
+        <li>
+          <h3>Установите Notif Guardian</h3>
+          <p>Скачайте <code>NotifGuardian</code> выше, откройте файл на телефоне и разрешите установку из браузера или файлового менеджера. Откройте приложение и сделайте зелёной каждую строку в <b>Guardian is set up</b>, затем нажмите <b>Add apps</b>.</p>
+          <p>Если Android блокирует доступ к уведомлениям (<b>Notification access</b>), потому что приложение «получено из неизвестного источника»: откройте сведения о приложении (<b>App info</b>), нажмите <b>&#8942;</b> в правом верхнем углу, выберите <b>Allow restricted settings</b> (разрешить ограниченные настройки) и повторите. Android спрашивает об этом один раз для любого приложения, установленного из скачанного файла.</p>
+        </li>
+        <li>
+          <h3>Установите Guardian Helper</h3>
+          <p>Скачайте <code>GuardianHelper</code> выше и установите так же. У него нет значка: он работает в фоне для Notif Guardian. HyperOS может предупредить, что он создан для более старой версии Android; так и должно быть, ведь иначе helper не сможет выполнять свою задачу.</p>
+          <p>Если телефон вообще отказывается его устанавливать, установите с компьютера: включите <b>USB debugging</b> (отладка по USB) и <b>Install via USB</b> (установка через USB) в параметрах разработчика, подключите телефон и выполните</p>
+          <pre dir="ltr">adb install --bypass-low-target-sdk-block GuardianHelper-x.y.z.apk</pre>
+        </li>
+        <li>
+          <h3>Завершите в приложении</h3>
+          <p>Откройте <b>Keep Google Play services awake</b> и сделайте зелёной каждую строку:</p>
+          <ul>
+            <li>Разрешите helper <b>Modify system settings</b> (изменение системных настроек)</li>
+            <li>Включите <b>Autostart</b> (автозапуск) для helper</li>
+            <li>Установите для helper <b>Battery saver</b> (экономия заряда) в значение <b>No restrictions</b> (нет ограничений)</li>
+            <li>Нажмите <b>Open helper</b>, подтвердите проверку Android, затем нажмите <b>Test helper</b></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <h2 id="support-title">Поддержать разработку</h2>
+      <p class="intro" id="support-message">Notif Guardian бесплатен и имеет открытый код. Если он исправил ваши уведомления, небольшое пожертвование поможет проекту жить дальше.</p>
+      <div id="donate-groups"></div>
+      <p id="donate-elsewhere" class="elsewhere">Звезда проекту на <a href="https://github.com/mahir-hs/notif-guardian">GitHub</a> помогает большему числу людей его найти.</p>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq">
+    <div class="wrap">
+      <h2 id="faq">Вопросы</h2>
+      <details><summary>Почему уведомления приходят только когда я открываю приложение?</summary><p>HyperOS замораживает сервисы Google Play, пока экран выключен. Push-уведомления почти всех приложений проходят через них, поэтому ждут, пока вы разблокируете телефон. Если выставить приложению экономию заряда «No restrictions», это поможет именно ему, но для сервисов Google Play в HyperOS такой настройки нет. Эту брешь и закрывает Notif Guardian.</p></details>
+      <details><summary>Нужен ли root?</summary><p>Нет, и компьютер тоже не нужен: оба приложения устанавливаются на телефон, и всё продолжает работать после перезагрузки. Компьютер понадобится один раз, только если телефон откажется устанавливать helper.</p></details>
+      <details><summary>На каких телефонах это работает?</summary><p>На телефонах Xiaomi, Redmi и POCO с HyperOS. Проверено на Redmi Note 14 Pro+ с HyperOS 3. На старых версиях MIUI может работать частично. Если что-то не работает, нажмите в приложении <b>Share diagnostics</b> и создайте issue на GitHub.</p></details>
+      <details><summary>Разряжает ли оно батарею?</summary><p>Почти нет. Guardian раз в минуту проверяет ваши приложения и реагирует, когда HyperOS меняет свой список. Не давать уснуть сервисам Google Play — это то, что и так делает любой Android-телефон, кроме Xiaomi.</p></details>
+      <details><summary>Telegram иногда всё равно немного опаздывает. Почему?</summary><p>Если вы активны в Telegram Desktop или Web, серверы Telegram намеренно задерживают push на телефон. Телефон показывает его в момент получения.</p></details>
+      <details><summary>Читает ли оно мои сообщения?</summary><p>Нет. Оно записывает только, какое приложение показало уведомление и когда, но никогда не текст. Ничего не покидает телефон, пока вы сами не отправите файл диагностики.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Notif Guardian — свободное программное обеспечение под лицензией MIT.</span>
+    <span><a href="#support">Пожертвовать</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian">Исходный код</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/issues">Сообщить о проблеме</a> &nbsp; <a href="https://github.com/mahir-hs/notif-guardian/releases">Все релизы</a></span>
+  </div>
+</footer>
+
+<script>
+window.PAGE = {"lang": "ru", "base": "../", "langs": {"en": "../", "bn": "../bn/", "hi": "../hi/", "id": "../id/", "zh": "../zh/", "es": "../es/", "ru": "../ru/"}};
+window.T = {"donate_in": "В {name}", "open": "Открыть", "copy": "Копировать", "copied": "Скопировано", "release_meta": "Версия {version}, выпущена {date}. Бесплатно и с открытым кодом. Без root и без компьютера.", "dyn": {"Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian бесплатен и имеет открытый код. Если он исправил ваши уведомления, небольшое пожертвование поможет проекту жить дальше.", "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "Не в Бангладеш? Международные пожертвования скоро появятся. А пока звезда проекту на GitHub помогает большему числу людей его найти.", "Bangladesh": "Бангладеш", "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash и Nagad — мобильные кошельки, которыми пользуются в Бангладеш.", "Personal account: use Send Money": "Личный счёт: используйте Send Money (отправка денег)"}};
+</script>
+<script src="../app.js"></script>
+</body>
+</html>
