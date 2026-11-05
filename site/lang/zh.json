@@ -72,6 +72,7 @@
 
   "install_h": "安装",
   "install_intro": "大约十分钟，只需一次，全部在手机上完成，不需要电脑。",
+  "video_note": "观看完整安装过程：约 2 分钟，字幕为英文。",
   "s1_t": "安装 Notif Guardian",
   "s1_p1": "下载上方的 <code>NotifGuardian</code>，在手机上打开，并允许通过浏览器或文件管理器安装应用。打开应用，把 <b>Guardian is set up</b> 中的每一行都设为绿色，然后点按 <b>Add apps</b>。",
   "s1_p2": "如果 Android 因为应用“来自未知来源”而阻止通知使用权（<b>Notification access</b>）：打开该应用的应用信息（<b>App info</b>），点右上角的 <b>&#8942;</b>，选择 <b>Allow restricted settings</b>（允许受限制的设置），然后重试。对任何通过下载文件安装的应用，Android 都会询问这一次。",

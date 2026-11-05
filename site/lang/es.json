@@ -72,6 +72,7 @@
 
   "install_h": "Instalación",
   "install_intro": "Unos diez minutos, una sola vez, todo en tu teléfono. No hace falta ordenador.",
+  "video_note": "Mira toda la instalación: unos 2 minutos, subtítulos en inglés.",
   "s1_t": "Instala Notif Guardian",
   "s1_p1": "Descarga <code>NotifGuardian</code> arriba, ábrelo en tu teléfono y permite la instalación desde tu navegador o gestor de archivos. Abre la app y pon en verde todas las filas de <b>Guardian is set up</b>; después toca <b>Add apps</b>.",
   "s1_p2": "Si Android bloquea el acceso a notificaciones (<b>Notification access</b>) porque la app \"proviene de una fuente desconocida\": abre la información de la app (<b>App info</b>), toca <b>&#8942;</b> arriba a la derecha, elige <b>Allow restricted settings</b> (permitir ajustes restringidos) y vuelve a intentarlo. Android lo pregunta una vez para cualquier app instalada desde un archivo descargado.",

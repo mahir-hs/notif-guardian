@@ -72,6 +72,7 @@
 
   "install_h": "Pasang",
   "install_intro": "Sekitar sepuluh menit, sekali saja, semuanya di ponsel. Tidak perlu komputer.",
+  "video_note": "Tonton seluruh proses pemasangan: sekitar 2 menit, teks dalam bahasa Inggris.",
   "s1_t": "Pasang Notif Guardian",
   "s1_p1": "Unduh <code>NotifGuardian</code> di atas, buka di ponsel, dan izinkan pemasangan dari browser atau pengelola file Anda. Buka aplikasinya dan hijaukan setiap baris di <b>Guardian is set up</b>, lalu ketuk <b>Add apps</b>.",
   "s1_p2": "Jika Android memblokir akses notifikasi (<b>Notification access</b>) karena aplikasi \"berasal dari sumber tidak dikenal\": buka info aplikasi (<b>App info</b>), ketuk <b>&#8942;</b> di kanan atas, pilih <b>Allow restricted settings</b>, lalu coba lagi. Android menanyakan ini sekali untuk setiap aplikasi yang dipasang dari file unduhan.",

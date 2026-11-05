@@ -15,3 +15,10 @@ keystore.properties
 
 # Built release APKs (attach them to GitHub Releases instead)
 dist/
+
+# Video working files (only the final docs/video/ is published)
+video/raw/
+video/work/
+video/preview/
+video/out/
+video/__pycache__/

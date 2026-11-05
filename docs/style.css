@@ -85,6 +85,13 @@ p.intro { color: var(--muted); font-size: 1.1rem; max-width: 40rem; margin-top: 
 .shots figcaption b { display: block; color: var(--ink); font: 700 1.05rem var(--display); margin-bottom: .1rem; }
 .shots-note { color: var(--muted); font-size: .9rem; margin: 1.5rem 0 0; }
 
+.install-video { margin: 1.75rem 0 0; max-width: 20rem; }
+.install-video video {
+  display: block; width: 100%; height: auto; border-radius: 28px; background: var(--ink);
+  border: 6px solid var(--ink); box-shadow: 0 18px 40px -18px rgba(20, 33, 61, .45);
+}
+.install-video figcaption { margin-top: .75rem; color: var(--muted); font-size: .9rem; }
+
 .features { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; }
 .features li { padding: 1.25rem 0; border-top: 1px solid var(--line); }
 .features strong { display: block; font-weight: 600; margin-bottom: .2rem; }
