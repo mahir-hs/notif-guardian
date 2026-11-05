@@ -85,20 +85,7 @@
   "s3_l3": "হেল্পারের <b>Battery saver</b> (ব্যাটারি সেভার) <b>No restrictions</b> (কোনো সীমাবদ্ধতা নেই) করুন",
   "s3_l4": "<b>Open helper</b> চাপুন, Android-এর পর্যালোচনা নিশ্চিত করুন, তারপর <b>Test helper</b> চাপুন",
 
-  "support_h": "উন্নয়নে সহায়তা করুন",
-  "support_message": "Notif Guardian বিনামূল্যে ও ওপেন সোর্স। এটি আপনার নোটিফিকেশন ঠিক করে দিলে সামান্য অনুদান প্রকল্পটি চালিয়ে যেতে সাহায্য করে।",
-  "donate_elsewhere": "<a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a>-এ প্রকল্পটিতে স্টার দিলে আরও মানুষ এটি খুঁজে পায়।",
-  "donate_in": "{name}-এ",
-  "open": "খুলুন",
-  "copy": "কপি",
-  "copied": "কপি হয়েছে",
-  "dyn": {
-    "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian বিনামূল্যে ও ওপেন সোর্স। এটি আপনার নোটিফিকেশন ঠিক করে দিলে সামান্য অনুদান প্রকল্পটি চালিয়ে যেতে সাহায্য করে।",
-    "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "বাংলাদেশের বাইরে? আন্তর্জাতিক অনুদান শীঘ্রই আসছে। ততদিন GitHub-এ প্রকল্পটিতে স্টার দিলে আরও মানুষ এটি খুঁজে পায়।",
-    "Bangladesh": "বাংলাদেশ",
-    "bKash and Nagad are mobile wallets used in Bangladesh.": "বিকাশ ও নগদ বাংলাদেশে ব্যবহৃত মোবাইল ওয়ালেট।",
-    "Personal account: use Send Money": "পার্সোনাল অ্যাকাউন্ট: Send Money ব্যবহার করুন"
-  },
+  "dyn": {},
 
   "faq_h": "প্রশ্ন ও উত্তর",
   "faq_q1": "অ্যাপ না খুললে নোটিফিকেশন আসে না কেন?",
@@ -115,7 +102,6 @@
   "faq_a6": "না। কোন অ্যাপ কখন নোটিফিকেশন দিয়েছে তা-ই শুধু রেকর্ড হয়, লেখা কখনো নয়। আপনি নিজে ডায়াগনস্টিক ফাইল শেয়ার না করলে ফোন থেকে কিছুই বাইরে যায় না।",
 
   "footer_license": "Notif Guardian MIT লাইসেন্সের অধীনে একটি ফ্রি সফটওয়্যার।",
-  "footer_donate": "অনুদান",
   "footer_source": "সোর্স কোড",
   "footer_report": "সমস্যা জানান",
   "footer_releases": "সব রিলিজ"

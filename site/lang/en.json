@@ -85,13 +85,6 @@
   "s3_l3": "Set the helper's <b>Battery saver</b> to <b>No restrictions</b>",
   "s3_l4": "Tap <b>Open helper</b>, confirm Android's review, then <b>Test helper</b>",
 
-  "support_h": "Support development",
-  "support_message": "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.",
-  "donate_elsewhere": "Starring the project on <a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a> helps more people find it.",
-  "donate_in": "In {name}",
-  "open": "Open",
-  "copy": "Copy",
-  "copied": "Copied",
   "dyn": {},
 
   "faq_h": "Questions",
@@ -109,7 +102,6 @@
   "faq_a6": "No. It records which app posted a notification and when, never the text. Nothing leaves your phone unless you share a diagnostics file yourself.",
 
   "footer_license": "Notif Guardian is free software under the MIT license.",
-  "footer_donate": "Donate",
   "footer_source": "Source",
   "footer_report": "Report a problem",
   "footer_releases": "All releases"

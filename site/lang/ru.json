@@ -85,20 +85,7 @@
   "s3_l3": "Установите для helper <b>Battery saver</b> (экономия заряда) в значение <b>No restrictions</b> (нет ограничений)",
   "s3_l4": "Нажмите <b>Open helper</b>, подтвердите проверку Android, затем нажмите <b>Test helper</b>",
 
-  "support_h": "Поддержать разработку",
-  "support_message": "Notif Guardian бесплатен и имеет открытый код. Если он исправил ваши уведомления, небольшое пожертвование поможет проекту жить дальше.",
-  "donate_elsewhere": "Звезда проекту на <a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a> помогает большему числу людей его найти.",
-  "donate_in": "В {name}",
-  "open": "Открыть",
-  "copy": "Копировать",
-  "copied": "Скопировано",
-  "dyn": {
-    "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian бесплатен и имеет открытый код. Если он исправил ваши уведомления, небольшое пожертвование поможет проекту жить дальше.",
-    "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "Не в Бангладеш? Международные пожертвования скоро появятся. А пока звезда проекту на GitHub помогает большему числу людей его найти.",
-    "Bangladesh": "Бангладеш",
-    "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash и Nagad — мобильные кошельки, которыми пользуются в Бангладеш.",
-    "Personal account: use Send Money": "Личный счёт: используйте Send Money (отправка денег)"
-  },
+  "dyn": {},
 
   "faq_h": "Вопросы",
   "faq_q1": "Почему уведомления приходят только когда я открываю приложение?",
@@ -115,7 +102,6 @@
   "faq_a6": "Нет. Оно записывает только, какое приложение показало уведомление и когда, но никогда не текст. Ничего не покидает телефон, пока вы сами не отправите файл диагностики.",
 
   "footer_license": "Notif Guardian — свободное программное обеспечение под лицензией MIT.",
-  "footer_donate": "Пожертвовать",
   "footer_source": "Исходный код",
   "footer_report": "Сообщить о проблеме",
   "footer_releases": "Все релизы"

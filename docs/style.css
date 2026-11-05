@@ -109,25 +109,6 @@ p code, li code { background: var(--white); border: 1px solid var(--line); paddi
 .faq summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: outside; }
 .faq details p { color: var(--muted); margin: .7rem 0 0; }
 
-.region { margin-top: 1.75rem; max-width: 34rem; }
-.region-head { display: flex; align-items: center; gap: .75rem; }
-.region-head img { width: 2.1rem; height: auto; border-radius: 3px; box-shadow: 0 0 0 1px var(--line); }
-.region-head strong { font: 700 1.15rem var(--display); }
-.region-about { color: var(--muted); margin: .35rem 0 0; }
-.elsewhere { color: var(--muted); max-width: 34rem; margin-top: 1.5rem; }
-.donate { list-style: none; padding: 0; margin: .9rem 0 0; background: var(--white); border-radius: 20px; }
-.donate li { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
-.donate li:first-child { border-top: 0; }
-.donate .what { flex: 1; }
-.donate strong { display: block; }
-.donate .value { font: 600 1.15rem var(--body); letter-spacing: .02em; }
-.donate .note { color: var(--muted); font-size: .9rem; }
-.donate button, .donate a.go {
-  font: 600 .95rem var(--body); border: 2px solid var(--line); background: none; color: var(--ink);
-  padding: .5rem 1rem; border-radius: 999px; cursor: pointer; text-decoration: none;
-}
-.donate button:hover, .donate a.go:hover { border-color: var(--ink); }
-
 footer { margin-top: 4.5rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
 

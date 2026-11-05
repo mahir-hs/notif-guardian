@@ -85,20 +85,7 @@
   "s3_l3": "Configura el <b>Battery saver</b> (ahorro de batería) del helper en <b>No restrictions</b> (sin restricciones)",
   "s3_l4": "Toca <b>Open helper</b>, confirma la revisión de Android y luego toca <b>Test helper</b>",
 
-  "support_h": "Apoya el desarrollo",
-  "support_message": "Notif Guardian es gratis y de código abierto. Si arregló tus notificaciones, una pequeña donación ayuda a mantenerlo.",
-  "donate_elsewhere": "Dar una estrella al proyecto en <a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a> ayuda a que más gente lo encuentre.",
-  "donate_in": "En {name}",
-  "open": "Abrir",
-  "copy": "Copiar",
-  "copied": "Copiado",
-  "dyn": {
-    "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian es gratis y de código abierto. Si arregló tus notificaciones, una pequeña donación ayuda a mantenerlo.",
-    "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "¿Fuera de Bangladés? Las donaciones internacionales llegarán pronto. Mientras tanto, dar una estrella al proyecto en GitHub ayuda a que más gente lo encuentre.",
-    "Bangladesh": "Bangladés",
-    "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash y Nagad son carteras móviles que se usan en Bangladés.",
-    "Personal account: use Send Money": "Cuenta personal: usa Send Money (enviar dinero)"
-  },
+  "dyn": {},
 
   "faq_h": "Preguntas",
   "faq_q1": "¿Por qué las notificaciones solo llegan cuando abro la app?",
@@ -115,7 +102,6 @@
   "faq_a6": "No. Solo registra qué app publicó una notificación y cuándo, nunca el texto. Nada sale de tu teléfono a menos que tú mismo compartas un archivo de diagnóstico.",
 
   "footer_license": "Notif Guardian es software libre con licencia MIT.",
-  "footer_donate": "Donar",
   "footer_source": "Código",
   "footer_report": "Informar de un problema",
   "footer_releases": "Todas las versiones"

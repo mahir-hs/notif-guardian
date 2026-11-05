@@ -85,20 +85,7 @@
   "s3_l3": "Atur <b>Battery saver</b> (penghemat baterai) milik helper ke <b>No restrictions</b> (tanpa pembatasan)",
   "s3_l4": "Ketuk <b>Open helper</b>, konfirmasi tinjauan Android, lalu <b>Test helper</b>",
 
-  "support_h": "Dukung pengembangan",
-  "support_message": "Notif Guardian gratis dan open source. Jika aplikasi ini memperbaiki notifikasi Anda, donasi kecil membantu proyek ini terus berjalan.",
-  "donate_elsewhere": "Memberi bintang pada proyek ini di <a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a> membantu lebih banyak orang menemukannya.",
-  "donate_in": "Di {name}",
-  "open": "Buka",
-  "copy": "Salin",
-  "copied": "Tersalin",
-  "dyn": {
-    "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian gratis dan open source. Jika aplikasi ini memperbaiki notifikasi Anda, donasi kecil membantu proyek ini terus berjalan.",
-    "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "Di luar Bangladesh? Donasi internasional segera hadir. Sampai saat itu, memberi bintang pada proyek ini di GitHub membantu lebih banyak orang menemukannya.",
-    "Bangladesh": "Bangladesh",
-    "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash dan Nagad adalah dompet seluler yang dipakai di Bangladesh.",
-    "Personal account: use Send Money": "Akun pribadi: gunakan Send Money"
-  },
+  "dyn": {},
 
   "faq_h": "Pertanyaan",
   "faq_q1": "Mengapa notifikasi baru masuk saat saya membuka aplikasinya?",
@@ -115,7 +102,6 @@
   "faq_a6": "Tidak. Aplikasi hanya mencatat aplikasi mana yang memunculkan notifikasi dan kapan, tidak pernah isinya. Tidak ada yang keluar dari ponsel Anda kecuali Anda sendiri membagikan file diagnostik.",
 
   "footer_license": "Notif Guardian adalah perangkat lunak bebas berlisensi MIT.",
-  "footer_donate": "Donasi",
   "footer_source": "Kode sumber",
   "footer_report": "Laporkan masalah",
   "footer_releases": "Semua rilis"

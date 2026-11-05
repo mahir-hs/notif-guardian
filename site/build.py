@@ -52,7 +52,7 @@ LANGS = [
 ]
 
 # Keys that are plain text for the page script rather than template placeholders
-SCRIPT_KEYS = ["donate_in", "open", "copy", "copied", "release_meta", "dyn"]
+SCRIPT_KEYS = ["release_meta", "dyn"]
 
 
 def load(code):

@@ -85,20 +85,7 @@
   "s3_l3": "把 Helper 的 <b>Battery saver</b>（省电策略）设为 <b>No restrictions</b>（无限制）",
   "s3_l4": "点按 <b>Open helper</b>，确认 Android 的审核提示，然后点 <b>Test helper</b>",
 
-  "support_h": "支持开发",
-  "support_message": "Notif Guardian 免费且开源。如果它修好了你的通知，一笔小额捐赠能帮助项目继续下去。",
-  "donate_elsewhere": "在 <a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a> 上给项目点星，能让更多人找到它。",
-  "donate_in": "在{name}",
-  "open": "打开",
-  "copy": "复制",
-  "copied": "已复制",
-  "dyn": {
-    "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian 免费且开源。如果它修好了你的通知，一笔小额捐赠能帮助项目继续下去。",
-    "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "不在孟加拉国？国际捐赠即将开通。在此之前，在 GitHub 上给项目点星能让更多人找到它。",
-    "Bangladesh": "孟加拉国",
-    "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash 和 Nagad 是孟加拉国使用的移动钱包。",
-    "Personal account: use Send Money": "个人账户：请使用 Send Money（转账）"
-  },
+  "dyn": {},
 
   "faq_h": "常见问题",
   "faq_q1": "为什么通知只有打开应用才会出现？",
@@ -115,7 +102,6 @@
   "faq_a6": "不会。它只记录是哪个应用在何时发出了通知，从不记录文字内容。除非你自己分享诊断文件，否则任何数据都不会离开你的手机。",
 
   "footer_license": "Notif Guardian 是采用 MIT 许可证的自由软件。",
-  "footer_donate": "捐赠",
   "footer_source": "源代码",
   "footer_report": "反馈问题",
   "footer_releases": "所有版本"

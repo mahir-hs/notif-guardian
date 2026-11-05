@@ -85,20 +85,7 @@
   "s3_l3": "हेल्पर का <b>Battery saver</b> (बैटरी सेवर) <b>No restrictions</b> (कोई प्रतिबंध नहीं) पर सेट करें",
   "s3_l4": "<b>Open helper</b> पर टैप करें, Android की समीक्षा की पुष्टि करें, फिर <b>Test helper</b> दबाएँ",
 
-  "support_h": "विकास में सहयोग करें",
-  "support_message": "Notif Guardian मुफ़्त और ओपन सोर्स है। अगर इसने आपके नोटिफिकेशन ठीक किए, तो एक छोटा दान इसे जारी रखने में मदद करता है।",
-  "donate_elsewhere": "<a href=\"https://github.com/mahir-hs/notif-guardian\">GitHub</a> पर प्रोजेक्ट को स्टार करने से और लोग इसे ढूँढ पाते हैं।",
-  "donate_in": "{name} में",
-  "open": "खोलें",
-  "copy": "कॉपी",
-  "copied": "कॉपी हो गया",
-  "dyn": {
-    "Notif Guardian is free and open source. If it fixed your notifications, a small donation helps keep it going.": "Notif Guardian मुफ़्त और ओपन सोर्स है। अगर इसने आपके नोटिफिकेशन ठीक किए, तो एक छोटा दान इसे जारी रखने में मदद करता है।",
-    "Outside Bangladesh? International donations are coming soon. Until then, starring the project on GitHub helps more people find it.": "बांग्लादेश से बाहर हैं? अंतरराष्ट्रीय दान जल्द आ रहे हैं। तब तक GitHub पर प्रोजेक्ट को स्टार करने से और लोग इसे ढूँढ पाते हैं।",
-    "Bangladesh": "बांग्लादेश",
-    "bKash and Nagad are mobile wallets used in Bangladesh.": "bKash और Nagad बांग्लादेश में इस्तेमाल होने वाले मोबाइल वॉलेट हैं।",
-    "Personal account: use Send Money": "पर्सनल अकाउंट: Send Money का उपयोग करें"
-  },
+  "dyn": {},
 
   "faq_h": "सवाल-जवाब",
   "faq_q1": "नोटिफिकेशन सिर्फ़ ऐप खोलने पर ही क्यों आते हैं?",
@@ -115,7 +102,6 @@
   "faq_a6": "नहीं। यह सिर्फ़ दर्ज करता है कि किस ऐप ने नोटिफिकेशन कब भेजा, टेक्स्ट कभी नहीं। जब तक आप खुद डायग्नोस्टिक फ़ाइल साझा न करें, फ़ोन से कुछ बाहर नहीं जाता।",
 
   "footer_license": "Notif Guardian, MIT लाइसेंस के तहत मुफ़्त सॉफ़्टवेयर है।",
-  "footer_donate": "दान करें",
   "footer_source": "सोर्स",
   "footer_report": "समस्या बताएँ",
   "footer_releases": "सभी रिलीज़"
