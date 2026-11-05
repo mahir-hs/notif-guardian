@@ -183,8 +183,7 @@ any change and drops entries it didn't add. Guardian Helper puts Google Play ser
 <br>
 
 Guardian reads notification timing (which app posted, and when), never the text. It goes online
-only when you tap **Check for updates** or **Show ways to donate**, and only to GitHub or this
-project's website. Nothing leaves the phone unless you share a diagnostics file yourself. Guardian
+only when you tap **Check for updates**, and only to GitHub. Nothing leaves the phone unless you share a diagnostics file yourself. Guardian
 Helper has no internet permission. The code is MIT-licensed and open here.
 </details>
 
@@ -228,8 +227,7 @@ To collect diagnostics from a computer instead, run `scripts/pull-diagnostics.ps
 ## Privacy
 
 Guardian goes online only when you tap **Check for updates** (to read this repo's latest release
-and download it) or **Show ways to donate** (to load the donation options from this project's
-website), and only to GitHub. Guardian reads notification timing, never the text. Guardian Helper
+and download it), and only to GitHub. Guardian reads notification timing, never the text. Guardian Helper
 has no internet permission at all.
 
 ## Building
@@ -274,13 +272,6 @@ The in-app updater reads the latest release of the repo set in `gradle.propertie
 The updater only updates Guardian: Android doesn't let an app install the helper, because it
 targets an old Android version. Guardian Helper rarely changes; when it does, users reinstall it
 from the release like the first time (and turn its autostart back on).
-
-## Support development
-
-Notif Guardian is free. If it fixed your notifications, you can donate:
-see [the website](https://mahir-hs.github.io/notif-guardian/#support). The options are listed in
-`docs/support.json`, which both the website and the app read, so they can change without an app
-update.
 
 ## License
 

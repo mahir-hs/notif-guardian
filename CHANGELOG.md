@@ -3,6 +3,10 @@
 All notable changes to Notif Guardian. Each version's section is also its GitHub release notes,
 which the in-app updater shows before you install.
 
+## Unreleased
+
+- Removed the **Support development** (donation) section from the app.
+
 ## 0.1.4 (2026-10-30)
 
 - Install Guardian Helper from inside Guardian: the **Install** button on its setup row downloads
